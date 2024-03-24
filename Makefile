@@ -2,6 +2,7 @@ CC = clang
 
 SRCS_RAW =	main.c\
 			parsing.c\
+			input_parsing.c\
 			events.c\
 			free.c
 

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/24 14:45:02 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:53:26 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	check_map_validity(t_game *game, char *map_path);
 void	exit_game(t_game *game, int exitcode);
 int		window_event(int value, void *game);
 int		keydown_event(int keycode, void *game);
+int		open_file(char *map_path);
 
 #endif

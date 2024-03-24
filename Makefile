@@ -1,6 +1,9 @@
 CC = clang
 
-SRCS_RAW =	cub3d.c
+SRCS_RAW =	main.c\
+			parsing.c\
+			events.c\
+			free.c
 
 OBJS_DIR = objs/
 

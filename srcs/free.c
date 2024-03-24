@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/24 11:24:44 by marde-vr         ###   ########.fr       */
+/*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
+/*   Updated: 2024/03/24 14:42:32 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+void	exit_game(t_game *game, int exitcode)
 {
-	ft_printf("hello world\n");
+	if (game)
+		//todo: free game
+	exit(exitcode);
 }

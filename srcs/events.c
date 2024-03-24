@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/24 11:23:46 by marde-vr         ###   ########.fr       */
+/*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
+/*   Updated: 2024/03/24 15:04:49 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(void)
+int	window_event(int value, void *game)
 {
-	ft_printf()
+	if (value == 0)
+		exit_game(game, 0);
+	return (0);
+}
+
+int	keydown_event(int keycode, void *game)
+{
+	ft_printf("%d\n", keycode);
+	if (keycode == 41)
+		exit_game(game, 0);
+	return (0);
 }

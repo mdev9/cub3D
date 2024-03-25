@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 19:48:45 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 20:29:07 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_game
 	t_vect				*vect;
 	char				**map;
 	int					map_size;
-	int					*floor_color;
-	int					*ceilling_color;
+	int					floor_color;
+	int					ceilling_color;
 	struct s_texture	*texture;
 	int					spawn_x;
 	int					spawn_y;
@@ -63,4 +63,6 @@ void	put_path_in_struct(t_game *game, char *line, char *identifier);
 int		line_is_empty(char *line);
 void	resize_map(t_game *game, int new_size);
 int		load_map_data(t_game *game, int fd);
+int		rgb(int r, int g, int b);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 16:30:31 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:58:33 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,24 @@ char	*get_path(char *line)
 
 	i = 0;
 	len = 0;
+	line += 2;
+	while (is_whitespace(line[i]))
+		line += 1;
 	while (!is_whitespace(line[i]))
 	{
 		len++;
 		i++;
 	}
-	return (ft_substr(line, 0, len));
+	return (ft_strdup(ft_substr(line, 0, len)));
 }
 
 void	put_path_in_struct(t_game *game, char *line, char *identifier)
 {
 	if (identifier[0] == 'N' && identifier[1] == 'O')
+	{
 		game->texture->no = get_path(line);
+		ft_printf("%s\n", game->texture->no);
+	}
 	if (identifier[0] == 'S' && identifier[1] == 'O')
 		game->texture->so = get_path(line);
 	if (identifier[0] == 'W' && identifier[1] == 'E')
@@ -260,17 +266,19 @@ int	line_is_only_char(char *line, int c)
 		i++;
 	while (line[i])
 	{
-		if (line[i] != c && line[i] != '\n')
+		if (line[i] != c && line[i] != '\n' && line[i] != ' ')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	check_map(t_game *game, int i)
+void	check_map(t_game *game)
 {
+	int	i;
 	int j;
 
+	i = 0;
 	j = 0;
 	while (is_whitespace(game->map[i][j]))
 		j++;
@@ -279,26 +287,37 @@ void	check_map(t_game *game, int i)
 	if (!line_is_only_char(game->map[i], '1'))
 		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
 	i++;
-	ft_printf("map_size: %d\n", game->map_size);
-	while (i < game->map_size - 1)
+	while (i < game->map_size)
 	{
-		ft_printf("i: %d\n", i);
-		ft_printf("line: %s", game->map[i]);
-		ft_printf("first_char %d\n", game->map[i][j]);
-		ft_printf("last_char: %d\n", game->map[i][ft_strlen(game->map[i]) - 2]);
 		j = 0;
 		while (is_whitespace(game->map[i][j]))
 			j++;
 		if (game->map[i][j] != '1' || game->map[i][ft_strlen(game->map[i]) - 2] != '1')
 		{
-			ft_printf("line: %s", game->map[i]);
 			exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
 		}
 		i++;
 	}
-	ft_printf("finished while loop\n");
-	if (!line_is_only_char(game->map[i], '1'))
+	if (!line_is_only_char(game->map[i - 1], '1'))
 		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
+}
+
+void	resize_map(t_game *game, int new_size)
+{
+	int i;
+
+	i = 0;
+	while (i < game->map_size)
+	{
+		if (i < new_size)
+		{
+			free(game->map[i]);
+		}
+		i++;
+	}
+	ft_memmove(game->map, game->map + new_size,
+			(game->map_size - new_size) * sizeof(char *));
+	game->map_size -= new_size;
 }
 
 void	check_if_map_valid(t_game *game)
@@ -306,7 +325,8 @@ void	check_if_map_valid(t_game *game)
 	int i;
 
 	i = check_map_info(game);
-	check_map(game, i);
+	resize_map(game, i);
+	check_map(game);
 }
 
 void	check_map_validity(t_game *game, char *map_path)

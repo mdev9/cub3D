@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 15:29:58 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:59:56 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@ int	game_loop(void *s_game)
 
 void	load_textures(t_game *game)
 {
+	char *texture_path;
+
 	game->width = ft_calloc(1, sizeof(int));
 	game->height = ft_calloc(1, sizeof(int));
+	ft_printf("load_texture: %s\n", game->texture->no);
+	texture_path = game->texture->no;
+	free(game->texture->no);
 	game->texture->no = mlx_png_file_to_image(game->mlx,
-		game->texture->no, game->width, game->height);
+		texture_path, game->width, game->height);
 	game->texture->so = mlx_png_file_to_image(game->mlx,
 		game->texture->so, game->width, game->height);
 	game->texture->we = mlx_png_file_to_image(game->mlx,

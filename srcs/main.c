@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:16:51 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:29:50 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	load_texture(t_game *game, void *texture)
 	texture = mlx_png_file_to_image(game->mlx,
 		texture_path, game->width, game->height);
 	free(texture_path);
+	if (!texture)
+		exit_game(game, "Error\nInvalid or missing texture!\n");
 }
 
 void	load_textures(t_game *game)

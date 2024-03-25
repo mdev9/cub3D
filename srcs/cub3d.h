@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 13:32:16 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:16:29 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ typedef struct s_game
 	int					map_size;
 	int					*width;
 	int					*height;
+	int					*floor_color;
+	int					*ceilling_color;
 	struct s_texture	*texture;
 }	t_game;
 
 void	check_map_validity(t_game *game, char *map_path);
 void	check_input_validity(int ac, char **av);
-void	exit_game(t_game *game, int exitcode);
+void	exit_game(t_game *game, char *error_message);
 void	render_map(t_game *game);
 int		window_event(int value, void *game);
 int		keydown_event(int keycode, void *game);

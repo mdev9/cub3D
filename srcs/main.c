@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 13:26:55 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:29:58 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,24 @@ int	game_loop(void *s_game)
 	return (0);
 }
 
+void	load_textures(t_game *game)
+{
+	game->width = ft_calloc(1, sizeof(int));
+	game->height = ft_calloc(1, sizeof(int));
+	game->texture->no = mlx_png_file_to_image(game->mlx,
+		game->texture->no, game->width, game->height);
+	game->texture->so = mlx_png_file_to_image(game->mlx,
+		game->texture->so, game->width, game->height);
+	game->texture->we = mlx_png_file_to_image(game->mlx,
+		game->texture->we, game->width, game->height);
+	game->texture->ea = mlx_png_file_to_image(game->mlx,
+		game->texture->ea, game->width, game->height);
+}
+
 int	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
+	load_textures(game);
 	game->mlx_win = mlx_new_window(game->mlx, 1920, 1080, "cub3D");
 	render_map(game);
 	mlx_loop_hook(game->mlx, game_loop, game);
@@ -43,8 +58,5 @@ int	main(int ac, char **av)
 		exit(1);
 	check_input_validity(ac, av);
 	check_map_validity(game, av[1]);
-	game->vect = ft_calloc(sizeof(t_vect),1);
-	if (game->vect);
-		return (1);
 	init_game(game);
 }

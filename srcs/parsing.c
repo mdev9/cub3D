@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 17:58:33 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:10:10 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,13 @@ char	*get_path(char *line)
 		len++;
 		i++;
 	}
-	return (ft_strdup(ft_substr(line, 0, len)));
+	return (ft_substr(line, 0, len));
 }
 
 void	put_path_in_struct(t_game *game, char *line, char *identifier)
 {
 	if (identifier[0] == 'N' && identifier[1] == 'O')
-	{
 		game->texture->no = get_path(line);
-		ft_printf("%s\n", game->texture->no);
-	}
 	if (identifier[0] == 'S' && identifier[1] == 'O')
 		game->texture->so = get_path(line);
 	if (identifier[0] == 'W' && identifier[1] == 'E')
@@ -103,9 +100,6 @@ int	check_texture_info(t_game *game, char *line, char *identifier)
 	int	i;
 
 	i = 0;
-	game->texture = ft_calloc(1, sizeof(t_texture));
-	if (!game->texture)
-		exit_game(game, 0);
 	while (is_whitespace(line[i]))
 		*line += 1;
 	if (!ft_strncmp(line, identifier, 2))
@@ -237,6 +231,9 @@ int	check_map_info(t_game *game)
 
 	i = 0;
 	j = 0;
+	game->texture = ft_calloc(1, sizeof(t_texture));
+	if (!game->texture)
+		exit_game(game, 0);
 	while (i < game->map_size && j < 6)
 	{
 		while (line_is_empty(game->map[i]))

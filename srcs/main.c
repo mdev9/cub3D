@@ -3,26 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/24 14:45:49 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:26:55 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	render_map(t_game *game)
-{
-	(void) game;
-	//do the magic
-}
-
 int	game_loop(void *s_game)
 {
-	t_game *game;
+	t_game	*game;
 
-	game = (t_game *)s_game;
+	game = (t_game *) s_game;
 	(void)game;
 	return (0);
 }
@@ -42,12 +36,15 @@ int	init_game(t_game *game)
 
 int	main(int ac, char **av)
 {
-	t_game *game;
-	
+	t_game	*game;
+
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		exit(1);
 	check_input_validity(ac, av);
 	check_map_validity(game, av[1]);
+	game->vect = ft_calloc(sizeof(t_vect),1);
+	if (game->vect);
+		return (1);
 	init_game(game);
 }

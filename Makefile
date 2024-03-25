@@ -4,7 +4,11 @@ SRCS_RAW =	main.c\
 			parsing.c\
 			render.c\
 			input_parsing.c\
+			parsing_utils.c\
+			path.c\
 			events.c\
+			color.c\
+			map.c\
 			free.c
 
 OBJS_DIR = objs/

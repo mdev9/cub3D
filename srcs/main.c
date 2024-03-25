@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:29:50 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:33:57 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int	game_loop(void *s_game)
 
 void	load_texture(t_game *game, void *texture)
 {
-	char *texture_path;
+	char	*texture_path;
 
 	texture_path = ft_strdup(texture);
+	if (!texture_path)
+		exit_game(game, 0);
 	free(texture);
 	texture = mlx_png_file_to_image(game->mlx,
-		texture_path, game->width, game->height);
+			texture_path, game->texture->width, game->texture->height);
 	free(texture_path);
 	if (!texture)
 		exit_game(game, "Error\nInvalid or missing texture!\n");
@@ -36,9 +38,10 @@ void	load_texture(t_game *game, void *texture)
 
 void	load_textures(t_game *game)
 {
-	game->width = ft_calloc(1, sizeof(int));
-	game->height = ft_calloc(1, sizeof(int));
-
+	game->texture->width = ft_calloc(1, sizeof(int));
+	game->texture->height = ft_calloc(1, sizeof(int));
+	if (!game->texture->width || !game->texture->height)
+		exit_game(game, 0);
 	load_texture(game, game->texture->no);
 	load_texture(game, game->texture->so);
 	load_texture(game, game->texture->we);

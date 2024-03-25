@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 15:16:29 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:48:45 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_vect
 
 typedef struct s_texture
 {
+	int		*width;
+	int		*height;
 	void	*no;
 	void	*so;
 	void	*we;
@@ -32,17 +34,18 @@ typedef struct s_texture
 }	t_texture;
 
 typedef struct s_game
-{	
+{
 	void				*mlx;
 	void				*mlx_win;
 	t_vect				*vect;
 	char				**map;
 	int					map_size;
-	int					*width;
-	int					*height;
 	int					*floor_color;
 	int					*ceilling_color;
 	struct s_texture	*texture;
+	int					spawn_x;
+	int					spawn_y;
+	int					spawn_orientation;
 }	t_game;
 
 void	check_map_validity(t_game *game, char *map_path);
@@ -52,5 +55,12 @@ void	render_map(t_game *game);
 int		window_event(int value, void *game);
 int		keydown_event(int keycode, void *game);
 int		open_file(char *map_path);
-
+int		check_color_info(t_game *game, char *line, char identifier);
+int		is_whitespace(int c);
+int		char_is_valid(int c);
+int		line_is_only_char(char *line, int c);
+void	put_path_in_struct(t_game *game, char *line, char *identifier);
+int		line_is_empty(char *line);
+void	resize_map(t_game *game, int new_size);
+int		load_map_data(t_game *game, int fd);
 #endif

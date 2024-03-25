@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:51:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/24 15:53:33 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:40:53 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	check_arg_count(int ac)
 int	is_cub_file(char *path)
 {
 	int	cub_extension;
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	cub_extension = 0;
 	i = 0;
@@ -41,7 +41,7 @@ int	is_cub_file(char *path)
 				i++;
 				j++;
 				if (j == 4)
-				cub_extension = 1;
+					cub_extension = 1;
 			}
 			if (path[i] != '\0')
 				cub_extension = 0;
@@ -62,7 +62,7 @@ void	check_file_extension(char *path)
 
 int	open_file(char *map_path)
 {
-	int fd;
+	int	fd;
 
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)

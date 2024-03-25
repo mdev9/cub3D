@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/24 15:53:26 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:38:41 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,23 @@
 # include <stdio.h>
 # include "../MacroLibX/includes/mlx.h"
 
-typedef struct s_game
+typedef struct s_texture
 {
-	void	*mlx;
-	void	*mlx_win;
-	char	**map;
-	int		map_size;
+	void	*NO;
+	void	*SO;
+	void	*WE;
+	void	*EA;
+}	t_texture;
+
+typedef struct s_game
+{	
+	void				*mlx;
+	void				*mlx_win;
+	char				**map;
+	int					map_size;
+	int					*width;
+	int					*height;
+	struct s_texture	*texture;
 }	t_game;
 
 void	check_input_validity(int ac, char **av);

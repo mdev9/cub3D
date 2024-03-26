@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 17:23:57 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:19:08 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,21 @@
 # include <stdio.h>
 # include "../MacroLibX/includes/mlx.h"
 
+#define N -1
+#define S 1
+#define W -1
+#define E 1
+
 typedef struct s_vect
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }	t_vect;
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 	t_vect	*vect;
 }	t_player;
 
@@ -42,16 +47,16 @@ typedef struct s_texture
 
 typedef struct s_game
 {
-	void				*mlx;
-	void				*mlx_win;
-	t_player			*player;
-	char				**map;
-	int					map_size;
-	int					floor_color;
-	int					ceilling_color;
-	struct s_texture	*texture;
-	int					win_width;
-	int					win_height;
+	void		*mlx;
+	void		*mlx_win;
+	t_player	*player;
+	char		**map;
+	int			map_size;
+	int			floor_color;
+	int			ceilling_color;
+	t_texture	*texture;
+	int			win_width;
+	int			win_height;
 }	t_game;
 
 void	check_map_validity(t_game *game, char *map_path);

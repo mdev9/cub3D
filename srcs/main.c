@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 13:53:19 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:21:09 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@ int	init_game(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, game->win_width, game->win_height, "cub3D");
 	render_map(game);
 	mlx_loop_hook(game->mlx, game_loop, game);
+	ft_printf("%p\n", game->player);
+	ft_printf("%p\n", game->player->vect);
+	ft_printf("%d \n", game->player->vect->x);
+	ft_printf("%d \n", game->player->vect->y);
 	mlx_on_event(game->mlx, game->mlx_win, MLX_KEYDOWN, keydown_event, game);
-	mlx_on_event(game->mlx, game->mlx_win, MLX_WINDOW_EVENT, window_event,
-		game);
+	mlx_on_event(game->mlx, game->mlx_win, MLX_WINDOW_EVENT, window_event, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

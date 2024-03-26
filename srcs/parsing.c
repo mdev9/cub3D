@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 14:57:20 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 18:31:09 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,33 +118,47 @@ int	char_is_spawn_pos(int c)
 	return (0);
 }
 
-void	get_player_spawn_pos(t_game *game)
+void	get_orientation(t_game **game, int orientation)
+{
+	if (orientation == 'N')
+		(*game)->player->vect->x = N;
+	else if (orientation == 'S')
+		(*game)->player->vect->x = S;
+	else if (orientation == 'W')
+		(*game)->player->vect->y = W;
+	else if (orientation == 'E')
+		(*game)->player->vect->y = E;
+}
+
+void	get_player_spawn_pos(t_game **game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	game->player = ft_calloc(1, sizeof(t_player));
-	if (!game->player)
-		exit_game(game, 0);
-	while (i < game->map_size)
+	(*game)->player = ft_calloc(1, sizeof(t_player));
+	if (!(*game)->player)
+		exit_game((*game), 0);
+	while (i < (*game)->map_size)
 	{
 		j = 0;
-		while (game->map[i][j])
+		while ((*game)->map[i][j])
 		{
-			if (char_is_spawn_pos(game->map[i][j]))
+			if (char_is_spawn_pos((*game)->map[i][j]))
 			{
-				game->player->x = j;
-				game->player->y = i;
-				//axel todo: save start player orientation
-				//game->player->orientation = game->map[i][j];
+				(*game)->player->x = j;
+				(*game)->player->y = i;
+				(*game)->player->vect = ft_calloc(1, sizeof(t_vect));
+				if (!(*game)->player->vect)
+					exit_game(*game, 0);
+				get_orientation(game, (*game)->map[i][j]);
 			}
 			j++;
 		}
 		i++;
 	}
-	if (!game->player->x || !game->player->y)
-		exit_game(game, "Error\nNo player spawning position!");
+	if (!(*game)->player->x || !(*game)->player->y)
+		exit_game(*game, "Error\nNo player spawning position!");
 }
 
 void	check_if_map_valid(t_game *game)
@@ -154,7 +168,7 @@ void	check_if_map_valid(t_game *game)
 	i = check_map_info(game);
 	resize_map(game, i);
 	check_map(game);
-	get_player_spawn_pos(game);
+	get_player_spawn_pos(&game);
 	check_if_closed(game, game->player->x, game->player->y);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 14:54:14 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:51:30 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,20 @@ void	free_textures(t_game *game)
 	}
 }
 
+void	free_player(t_game *game)
+{
+	if (game->player->vect)
+		free(game->player->vect);
+	if (game->player)
+		free(game->player);
+}
+
 void	exit_game(t_game *game, char *error_message)
 {
 	if (game)
 	{
 		free_textures(game);
-		if (game->player)
-			free(game->player);
+		free_player(game);
 		if (game->map)
 			free_map(game, game->map);
 		if (game->mlx_win)

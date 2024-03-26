@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 20:29:07 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:01:49 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,16 @@
 
 typedef struct s_vect
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }	t_vect;
+
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	t_vect				*vect;
+}	t_player;
 
 typedef struct s_texture
 {
@@ -37,15 +44,14 @@ typedef struct s_game
 {
 	void				*mlx;
 	void				*mlx_win;
-	t_vect				*vect;
+	t_player			*player;
 	char				**map;
 	int					map_size;
 	int					floor_color;
 	int					ceilling_color;
 	struct s_texture	*texture;
-	int					spawn_x;
-	int					spawn_y;
-	int					spawn_orientation;
+	int					win_width;
+	int					win_height;
 }	t_game;
 
 void	check_map_validity(t_game *game, char *map_path);

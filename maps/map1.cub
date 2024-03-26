@@ -3,8 +3,6 @@ SO ./maps/textures/spruce_planks.png
 WE ./maps/textures/stone_bricks.png
 EA ./maps/textures/bricks.png
 
-
-gsd
 F 220,100,0
 C 225,30,0
 

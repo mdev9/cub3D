@@ -1,6 +1,7 @@
 Macrolibx/
 cub3D
 todo
+.vscode/
 
 # Prerequisites
 *.d

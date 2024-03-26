@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 13:11:04 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:53:19 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int	init_game(t_game *game)
 {
 	game->mlx = mlx_init();
 	load_textures(game);
-	game->mlx_win = mlx_new_window(game->mlx, 1920, 1080, "cub3D");
+	game->win_width = 1920;
+	game->win_height = 1080;
+	game->mlx_win = mlx_new_window(game->mlx, game->win_width, game->win_height, "cub3D");
 	render_map(game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_on_event(game->mlx, game->mlx_win, MLX_KEYDOWN, keydown_event, game);

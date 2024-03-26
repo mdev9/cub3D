@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 14:01:49 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:57:36 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int		line_is_empty(char *line);
 void	resize_map(t_game *game, int new_size);
 int		load_map_data(t_game *game, int fd);
 int		rgb(int r, int g, int b);
+void	free_map(t_game *game, char **map);
+int		check_if_closed(t_game *game, int x, int y);
 
 #endif

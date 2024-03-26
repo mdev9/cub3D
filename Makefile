@@ -5,6 +5,7 @@ SRCS_RAW =	main.c\
 			render.c\
 			input_parsing.c\
 			parsing_utils.c\
+			map_closed_check.c\
 			path.c\
 			events.c\
 			color.c\

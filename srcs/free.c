@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 20:49:40 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:18:41 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ void	free_texture(t_game *game, void *texture)
 {
 	if (texture)
 	{
-		if (ft_strlen(texture))
+		ft_printf("%d\n", ft_strnstr(texture, ".png", 4));
+		if (ft_strnstr(texture, ".png", 4))
+		{
+			printf("Pointer points to an char *.\n");
+			ft_printf("content: %s\n", (char *)texture);
 			free(texture);
+		}
 		else
 			mlx_destroy_image(game->mlx, game->mlx_win);
 	}

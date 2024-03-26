@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:42:36 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 09:47:18 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:37:25 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	rgb(int r, int g, int b)
 {
 	g = ((g / 16) * ft_power(16, 3)) + (g % 16) * ft_power(16, 2);
 	r = ((r / 16) * ft_power(16, 5)) + (r % 16) * ft_power(16, 4);
-	return (r + g + b);
+	return (0xFF000000 + r + g + b);
 }
 
 void	check_color(t_game *game, char *line, char identifier)

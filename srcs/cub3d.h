@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 14:01:49 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:20:54 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	t_vect				*vect;
+	t_vect	*vect;
 }	t_player;
 
 typedef struct s_texture

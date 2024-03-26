@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 13:10:37 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:26:24 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	exit_game(t_game *game, char *error_message)
 {
 	if (game)
 	{
-		mlx_put_image_to_window(game->mlx, game->mlx_win, game->texture->no, 1, 1);
-		usleep(10000);
 		free_textures(game);
 		if (game->map)
 			free_map(game, game->map);

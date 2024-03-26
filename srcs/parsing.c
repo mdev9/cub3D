@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 11:17:25 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:52:26 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void	check_if_map_valid(t_game *game)
 	int	i;
 
 	i = check_map_info(game);
-	exit_game(game, 0);
 	resize_map(game, i);
 	check_map(game);
 }

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 11:07:31 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:11:04 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	load_texture(t_game *game, void **texture)
 	free(texture_path);
 	if (!*texture)
 		exit_game(game, "Error\nInvalid or missing texture!\n");
-	ft_printf("texture: %p\n", *texture);
 }
 
 void	load_textures(t_game *game)

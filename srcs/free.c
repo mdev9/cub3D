@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 11:18:41 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:10:37 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,10 @@ void	free_texture(t_game *game, void *texture)
 {
 	if (texture)
 	{
-		ft_printf("%d\n", ft_strnstr(texture, ".png", 4));
-		if (ft_strnstr(texture, ".png", 4))
-		{
-			printf("Pointer points to an char *.\n");
-			ft_printf("content: %s\n", (char *)texture);
+		if (ft_strnstr(texture, ".png", ft_strlen(texture)))
 			free(texture);
-		}
 		else
-			mlx_destroy_image(game->mlx, game->mlx_win);
+			mlx_destroy_image(game->mlx, texture);
 	}
 }
 
@@ -61,6 +56,8 @@ void	exit_game(t_game *game, char *error_message)
 {
 	if (game)
 	{
+		mlx_put_image_to_window(game->mlx, game->mlx_win, game->texture->no, 1, 1);
+		usleep(10000);
 		free_textures(game);
 		if (game->map)
 			free_map(game, game->map);

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 20:38:38 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 09:39:37 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	check_texture_info(t_game *game, char *line, char *identifier)
 
 	i = 0;
 	while (is_whitespace(line[i]))
-		*line += 1;
+		line += 1;
 	if (!ft_strncmp(line, identifier, 2))
 	{
-		*line += 2;
+		line += 2;
 		while (is_whitespace(line[i]))
-			*line += 1;
+			line += 1;
 		if (!ft_strlen(line + 3))
 		{
 			ft_printf("Error\nNo path specified after %s identifier!\n",

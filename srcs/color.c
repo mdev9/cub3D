@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:42:36 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 20:36:33 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 09:47:18 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,20 @@ void	check_color(t_game *game, char *line, char identifier)
 
 	i = 0;
 	r = ft_atoi(line);
-	ft_printf("r: %s", line);
 	if (!(r >= 0 && r <= 255))
 		exit_game(game, "Error\nInvalid or missing red color value!\n");
 	while (ft_isdigit(line[i]))
 		line += 1;
-	while (is_whitespace(line[i]))
-		line += 1;
-	ft_printf("g: %s", line);
+	line += 1;
 	g = ft_atoi(line);
 	if (!(g >= 0 && g <= 255))
 		exit_game(game, "Error\nInvalid or missing green color value!\n");
 	while (ft_isdigit(line[i]))
 		line += 1;
-	while (is_whitespace(line[i]))
-		line += 1;
+	line += 1;
 	b = ft_atoi(line);
-	ft_printf("b: %s", line);
 	if (!(b >= 0 && b <= 255))
 		exit_game(game, "Error\nInvalid or missing blue color value!\n");
-	ft_printf("rgb: %d %d %d\n", r, g, b);
 	if (identifier == 'F')
 		game->floor_color = rgb(r, g, b);
 	if (identifier == 'C')
@@ -69,12 +63,12 @@ int	check_color_info(t_game *game, char *line, char identifier)
 
 	i = 0;
 	while (is_whitespace(line[i]))
-		*line += 1;
+		line += 1;
 	if (line[i] == identifier)
 	{
-		*line += 1;
+		line += 1;
 		while (is_whitespace(line[i]))
-			*line += 1;
+			line += 1;
 		check_color(game, line, identifier);
 		return (1);
 	}

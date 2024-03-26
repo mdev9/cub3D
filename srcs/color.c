@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:42:36 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 10:37:25 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:57:44 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,32 @@ int	rgb(int r, int g, int b)
 	return (0xFF000000 + r + g + b);
 }
 
+void	go_to_next_color(t_game *game, char **line, char color)
+{
+	while (ft_isdigit(*line[0]))
+		*line += 1;
+	if (*line[0] == ',')
+		*line += 1;
+	else if (color == 'g')
+		exit_game(game, "Error\nInvalid or missing green color value!\n");
+	else
+		exit_game(game, "Error\nInvalid or missing blue color value!\n");
+}
+
 void	check_color(t_game *game, char *line, char identifier)
 {
-	int	i;
 	int	r;
 	int	g;
 	int	b;
 
-	i = 0;
 	r = ft_atoi(line);
 	if (!(r >= 0 && r <= 255))
 		exit_game(game, "Error\nInvalid or missing red color value!\n");
-	while (ft_isdigit(line[i]))
-		line += 1;
-	line += 1;
+	go_to_next_color(game, &line, 'g');
 	g = ft_atoi(line);
 	if (!(g >= 0 && g <= 255))
 		exit_game(game, "Error\nInvalid or missing green color value!\n");
-	while (ft_isdigit(line[i]))
-		line += 1;
-	line += 1;
+	go_to_next_color(game, &line, 'b');
 	b = ft_atoi(line);
 	if (!(b >= 0 && b <= 255))
 		exit_game(game, "Error\nInvalid or missing blue color value!\n");

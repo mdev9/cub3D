@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 17:49:36 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:26:39 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	recursive_check(char **map, int map_size, int x, int y)
 	if (map[y][x] == '1')
 		return (0);
 	map[y][x] = '1';
-	return (recursive_check(map, map_size, x + 1, y) ||
-			recursive_check(map, map_size, x - 1, y) ||
-			recursive_check(map, map_size, x, y + 1) ||
-			recursive_check(map, map_size, x, y - 1));
+	return (recursive_check(map, map_size, x + 1, y)
+		|| recursive_check(map, map_size, x - 1, y)
+		|| recursive_check(map, map_size, x, y + 1)
+		|| recursive_check(map, map_size, x, y - 1));
 }
 
 int	make_map_copy(t_game *game, char **map_copy)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < game->map_size)
@@ -55,11 +55,13 @@ int	check_if_closed(t_game *game, int x, int y)
 		free(map_copy);
 		exit_game(game, 0);
 	}
+	//todo calculate map size more acurately to account for any empty lines at end of file
 	if (recursive_check(map_copy, game->map_size, x, y))
 	{
 		free(*map_copy);
 		free(map_copy);
-		exit_game(game, "Error\nThe map isn't closed!\n");
+		exit_game(game,
+			"Error\nThe map contains an invalid character or isn't closed!\n");
 	}
 	return (0);
 }

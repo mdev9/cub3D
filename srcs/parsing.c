@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 10:42:17 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:32:20 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ void	get_orientation(t_game **game, int orientation)
 	}
 	else if (orientation == 'E')
 	{
+		(*game)->player->vect->y = W;
 		(*game)->player->vect->y = E;
-		
 	}
 }
 

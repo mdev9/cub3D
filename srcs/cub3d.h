@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 18:19:08 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:33:07 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <stdio.h>
 # include "../MacroLibX/includes/mlx.h"
 
-#define N -1
-#define S 1
-#define W -1
-#define E 1
+# define N -1
+# define S 1
+# define W -1
+# define E 1
 
 typedef struct s_vect
 {
@@ -30,8 +30,8 @@ typedef struct s_vect
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	t_vect	*vect;
 }	t_player;
 

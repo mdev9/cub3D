@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 10:03:44 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:31:40 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	window_event(int value, void *game)
 {
-	t_game *s_game;
+	t_game	*s_game;
 
 	s_game = (t_game *)game;
 	if (value == 0)
@@ -24,7 +24,7 @@ int	window_event(int value, void *game)
 
 int	keydown_event(int keycode, void *game_data)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = (t_game *)game_data;
 	// ft_printf("%d\n", keycode);

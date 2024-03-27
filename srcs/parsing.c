@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 18:31:09 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:42:17 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,25 @@ int	char_is_spawn_pos(int c)
 void	get_orientation(t_game **game, int orientation)
 {
 	if (orientation == 'N')
+	{
 		(*game)->player->vect->x = N;
+		(*game)->player->vect->y = 0;
+	}
 	else if (orientation == 'S')
-		(*game)->player->vect->x = S;
+	{
+		(*game)->player->vect->x = N;
+		(*game)->player->vect->y = 0;
+	}
 	else if (orientation == 'W')
+	{
+		(*game)->player->vect->x = 0;
 		(*game)->player->vect->y = W;
+	}
 	else if (orientation == 'E')
+	{
 		(*game)->player->vect->y = E;
+		
+	}
 }
 
 void	get_player_spawn_pos(t_game **game)

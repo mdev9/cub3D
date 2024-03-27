@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/26 17:51:30 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:02:18 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	exit_game(t_game *game, char *error_message)
 	if (game)
 	{
 		free_textures(game);
-		free_player(game);
+		if (game->player)
+			free_player(game);
 		if (game->map)
 			free_map(game, game->map);
 		if (game->mlx_win)

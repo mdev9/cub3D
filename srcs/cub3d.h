@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/28 11:00:41 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:14:10 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include "../MacroLibX/includes/mlx.h"
+# include "raycaster.h"
 
 # define N -1
 # define S 1
@@ -49,22 +50,24 @@ typedef struct s_texture
 
 typedef struct s_game
 {
+	t_player	*player;
+	t_texture	*texture;
+	t_raycaster	*ray;
 	void		*mlx;
 	void		*mlx_win;
-	t_player	*player;
 	char		**map;
 	int			map_size;
 	int			floor_color;
 	int			ceilling_color;
-	t_texture	*texture;
 	int			win_width;
 	int			win_height;
+	int			calimg;
 }	t_game;
 
 void	check_map_validity(t_game *game, char *map_path);
 void	check_input_validity(int ac, char **av);
 void	exit_game(t_game *game, char *error_message);
-void	render_map(t_game *game);
+void	render_map(t_game *game, int isfree);
 int		window_event(int value, void *game);
 int		keydown_event(int keycode, void *game);
 int		open_file(char *map_path);

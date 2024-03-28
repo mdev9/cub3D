@@ -35,7 +35,7 @@ all: $(NAME) libft
 LIBMLX_DIR = MacroLibX
 
 $(MLX):
-	make --no-print-directory -C MacroLibX
+	make --no-print-directory -C MacroLibX -j
 
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)

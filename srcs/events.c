@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 18:31:40 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:23:08 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ int	keydown_event(int keycode, void *game_data)
 	else if (keycode == 80)
 		game->player->vect->x -= 10.0;
 	else if (keycode == 81)
+	{
+		game->calimg = 1;
 		game->player->vect->y += 10.0;
+	}
 	else if (keycode == 82)
+	{
+		game->calimg = 1;
 		game->player->vect->y -= 10.0;
-	render_map(game);
+	}
+	render_map(game, 0);
 	// ft_printf("x\ty\n%i\t%i\n",game->player->vect->y, game->player->vect->x);
 	return (0);
 }

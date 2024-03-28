@@ -6,11 +6,13 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 18:26:39 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:35:38 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+//todo put info in struct and add a recursion depth variable to throw an error if too deep to avoid segfaults with too big maps
 
 int	recursive_check(char **map, int map_size, int x, int y)
 {
@@ -63,5 +65,6 @@ int	check_if_closed(t_game *game, int x, int y)
 		exit_game(game,
 			"Error\nThe map contains an invalid character or isn't closed!\n");
 	}
+	//check if there are any 0's left in the map, if it's the case, run check again
 	return (0);
 }

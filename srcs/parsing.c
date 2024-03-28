@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 18:32:20 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/28 10:38:03 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void	get_player_spawn_pos(t_game **game)
 				if (!(*game)->player->vect)
 					exit_game(*game, 0);
 				get_orientation(game, (*game)->map[i][j]);
+				break;
 			}
 			j++;
 		}

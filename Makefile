@@ -10,7 +10,8 @@ SRCS_RAW =	main.c\
 			events.c\
 			color.c\
 			map.c\
-			free.c
+			free.c\
+			raycaster.c
 
 OBJS_DIR = objs/
 

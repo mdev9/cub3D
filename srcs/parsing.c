@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/28 10:38:03 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:03:01 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ void	get_player_spawn_pos(t_game **game)
 			{
 				(*game)->player->x = j;
 				(*game)->player->y = i;
+				(*game)->player->planex = 0;
+				(*game)->player->planey = 0.66;
 				(*game)->player->vect = ft_calloc(1, sizeof(t_vect));
 				if (!(*game)->player->vect)
 					exit_game(*game, 0);

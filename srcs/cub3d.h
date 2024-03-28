@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/27 18:33:07 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:00:41 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@
 
 typedef struct s_vect
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }	t_vect;
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
+	double		planex;
+	double		planey;
 	t_vect	*vect;
 }	t_player;
 

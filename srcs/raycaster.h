@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:15:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/03/28 17:27:24 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:32:40 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@
 
 typedef struct s_raycaster
 {
-	double deltax;
-	double deltay;
-	double distx;
-	double disty;
-	double dirx;
-	double diry;
+	double	deltax;
+	double	deltay;
+	double	distx;
+	double	disty;
+	int		angle;
 }	t_raycaster;
 
 

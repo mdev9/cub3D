@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/28 17:14:10 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:52:35 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include "../MacroLibX/includes/mlx.h"
 # include "raycaster.h"
+# include	<stdbool.h>
+# include	<math.h>
 
 # define N -1
 # define S 1
@@ -68,6 +70,10 @@ void	check_map_validity(t_game *game, char *map_path);
 void	check_input_validity(int ac, char **av);
 void	exit_game(t_game *game, char *error_message);
 void	render_map(t_game *game, int isfree);
+void	set_raycaster(t_game *game);
+void	put_path_in_struct(t_game *game, char *line, char *identifier);
+void	resize_map(t_game *game, int new_size);
+void	free_map(t_game *game, char **map);
 int		window_event(int value, void *game);
 int		keydown_event(int keycode, void *game);
 int		open_file(char *map_path);
@@ -75,12 +81,13 @@ int		check_color_info(t_game *game, char *line, char identifier);
 int		is_whitespace(int c);
 int		char_is_valid(int c);
 int		line_is_only_char(char *line, int c);
-void	put_path_in_struct(t_game *game, char *line, char *identifier);
 int		line_is_empty(char *line);
-void	resize_map(t_game *game, int new_size);
 int		load_map_data(t_game *game, int fd);
 int		rgb(int r, int g, int b);
-void	free_map(t_game *game, char **map);
 int		check_if_closed(t_game *game, int x, int y);
+
+
+// a retirer
+void printmap(char **map);
 
 #endif

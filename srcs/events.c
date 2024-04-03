@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/28 17:23:08 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:51:43 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ int	window_event(int value, void *game)
 	return (0);
 }
 
+void	change_angle(int keycode,t_game *game)
+{
+	if (keycode == 79)
+	{
+		game->player->vect->x += 0.1; 
+		game->player->vect->y += 0.1; 
+	}
+	else if (keycode == 80)
+	{
+		game->player->vect->x -= 0.1; 
+		game->player->vect->y -= 0.1; 
+	}
+}
+
 int	keydown_event(int keycode, void *game_data)
 {
 	t_game	*game;
@@ -30,21 +44,7 @@ int	keydown_event(int keycode, void *game_data)
 	// ft_printf("%d\n", keycode);
 	if (keycode == 41)
 		exit_game(game, 0);
-	else if (keycode == 79)
-		game->player->vect->x += 10.0;
-	else if (keycode == 80)
-		game->player->vect->x -= 10.0;
-	else if (keycode == 81)
-	{
-		game->calimg = 1;
-		game->player->vect->y += 10.0;
-	}
-	else if (keycode == 82)
-	{
-		game->calimg = 1;
-		game->player->vect->y -= 10.0;
-	}
+	change_angle(keycode, game);
 	render_map(game, 0);
-	// ft_printf("x\ty\n%i\t%i\n",game->player->vect->y, game->player->vect->x);
 	return (0);
 }

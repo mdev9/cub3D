@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/03/28 17:23:56 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:21:44 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	set_img(t_game *game, void	**img)
 		j = -1;
 		while (++j < game->win_height)
 		{
-			if (j < game->win_height / 2 - game->player->vect->y)
+			if (j < game->win_height / 2)
 				mlx_set_image_pixel(game->mlx,
 					*img, i, j, game->ceilling_color);
 			else
@@ -39,6 +39,7 @@ void	render_map(t_game *game, int isfree)
 {
 	static void	*img = NULL;
 
+	set_raycaster(game);
 	if ((img && game->calimg) || isfree)
 	{
 		mlx_destroy_image(game->mlx, img);
@@ -50,8 +51,4 @@ void	render_map(t_game *game, int isfree)
 		set_img(game, &img);
 		game->calimg = 0;
 	}
-	mlx_put_image_to_window(game->mlx,
-		game->mlx_win, game->texture->ea,
-		game->win_width / 2 - 32,
-		game->win_height / 2 - 32);
 }

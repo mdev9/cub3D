@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/02 13:00:12 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:08:15 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	free_player(t_game *game)
 
 void	exit_game(t_game *game, char *error_message)
 {
-	render_map(game, 1);
 	if (game)
 	{
 		free(game->ray);

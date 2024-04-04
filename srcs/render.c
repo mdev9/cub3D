@@ -6,49 +6,63 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/03 14:21:44 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:46:01 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_img(t_game *game, void	**img)
+void	set_wall(t_game *game)
+{
+	game->ray->wall_sizey = game->win_height / game->ray->dist;
+	// if (game->ray->wall_sizey > game->win_height || game->ray->dist == 0.0)
+	// 	game->ray->wall_sizey = game->win_height;
+	game->ray->wall_starty = (game->win_height - game->ray->wall_sizey) / 2;
+	game->ray->wall_endy = (game->win_height + game->ray->wall_sizey) / 2;
+	// printf("dist =%f\n", game->ray->dist);
+	// printf("wall =%d\n", game->ray->wall_size);
+	// printf("start wall =%d\n", game->ray->wall_start);
+	// printf("end wall =%d\n", game->ray->wall_end);
+}
+
+void	set_img(t_game *game)
 {
 	int	i;
 	int	j;
 
-	*img = mlx_new_image(game->mlx, game->win_width, game->win_height);
+	game->ray = ft_calloc(sizeof(t_raycaster), 1);
+	if (!game->ray)
+		exit_game(game, 0);
+	game->ray->ray = (game->player->vect->angle - FOV / 2) * PI / 180;
+	// printf("ray =%f\n", game->ray->ray);
 	i = -1;
 	while (++i < game->win_width)
 	{
-		j = -1;
-		while (++j < game->win_height)
+		set_raycaster(game);
+		set_wall(game);
+		j = 0;
+		while (j < game->ray->wall_starty)
 		{
-			if (j < game->win_height / 2)
-				mlx_set_image_pixel(game->mlx,
-					*img, i, j, game->ceilling_color);
-			else
-				mlx_set_image_pixel(game->mlx,
-					*img, i, j, game->floor_color);
+			mlx_pixel_put(game->mlx,
+				game->mlx_win, i, j, game->ceilling_color);
+				j++;
+		}
+		while (j < game->ray->wall_endy)
+		{
+			mlx_pixel_put(game->mlx,
+				game->mlx_win, i, j, 0xFF000033);
+				j++;
+		}
+		while (j < game->win_height)
+		{
+			mlx_pixel_put(game->mlx,
+				game->mlx_win, i, j, game->floor_color);
+			j++;
 		}
 	}
-	mlx_put_image_to_window(game->mlx, game->mlx_win, *img, 0, 0);
 }
 
-void	render_map(t_game *game, int isfree)
+void	render_map(t_game *game)
 {
-	static void	*img = NULL;
-
-	set_raycaster(game);
-	if ((img && game->calimg) || isfree)
-	{
-		mlx_destroy_image(game->mlx, img);
-	}
-	if (isfree)
-		return ;
-	if (game->calimg)
-	{
-		set_img(game, &img);
-		game->calimg = 0;
-	}
+		set_img(game);
 }

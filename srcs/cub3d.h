@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/03 14:52:35 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:02:45 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define S 1
 # define W -1
 # define E 1
+# define PI acos(-1.0)
 
 typedef struct s_vect
 {
-	double	x;
-	double	y;
+	int	angle;
 }	t_vect;
 
 typedef struct s_player
@@ -69,11 +69,12 @@ typedef struct s_game
 void	check_map_validity(t_game *game, char *map_path);
 void	check_input_validity(int ac, char **av);
 void	exit_game(t_game *game, char *error_message);
-void	render_map(t_game *game, int isfree);
+void	render_map(t_game *game);
 void	set_raycaster(t_game *game);
 void	put_path_in_struct(t_game *game, char *line, char *identifier);
 void	resize_map(t_game *game, int new_size);
 void	free_map(t_game *game, char **map);
+void	set_wall(t_game *game);
 int		window_event(int value, void *game);
 int		keydown_event(int keycode, void *game);
 int		open_file(char *map_path);
@@ -85,6 +86,7 @@ int		line_is_empty(char *line);
 int		load_map_data(t_game *game, int fd);
 int		rgb(int r, int g, int b);
 int		check_if_closed(t_game *game, int x, int y);
+void	set_img(t_game *game);
 
 
 // a retirer

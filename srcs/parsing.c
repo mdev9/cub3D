@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/02 13:50:47 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:20:23 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,25 +121,13 @@ int	char_is_spawn_pos(int c)
 void	get_orientation(t_game **game, int orientation)
 {
 	if (orientation == 'N')
-	{
-		(*game)->player->vect->x = 1;
-		(*game)->player->vect->y = 0;
-	}
+		(*game)->player->vect->angle = 90;
 	else if (orientation == 'S')
-	{
-		(*game)->player->vect->x = -1;
-		(*game)->player->vect->y = 0;
-	}
+		(*game)->player->vect->angle = 270;
 	else if (orientation == 'W')
-	{
-		(*game)->player->vect->x = 0;
-		(*game)->player->vect->y = -1;
-	}
+		(*game)->player->vect->angle = 180;
 	else if (orientation == 'E')
-	{
-		(*game)->player->vect->x = 0;
-		(*game)->player->vect->y = 1;
-	}
+		(*game)->player->vect->angle = 0;
 }
 
 void	get_player_spawn_pos(t_game **game)
@@ -160,8 +148,6 @@ void	get_player_spawn_pos(t_game **game)
 			{
 				(*game)->player->x = j;
 				(*game)->player->y = i;
-				(*game)->player->planex = 0;
-				(*game)->player->planey = 0.66;
 				(*game)->player->vect = ft_calloc(1, sizeof(t_vect));
 				if (!(*game)->player->vect)
 					exit_game(*game, 0);

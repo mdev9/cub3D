@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/04 19:02:45 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:50:14 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define S 1
 # define W -1
 # define E 1
-# define PI acos(-1.0)
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_vect
 {
@@ -33,11 +34,9 @@ typedef struct s_vect
 
 typedef struct s_player
 {
+	t_vect		*vect;
 	double		x;
 	double		y;
-	double		planex;
-	double		planey;
-	t_vect	*vect;
 }	t_player;
 
 typedef struct s_texture
@@ -61,9 +60,6 @@ typedef struct s_game
 	int			map_size;
 	int			floor_color;
 	int			ceilling_color;
-	int			win_width;
-	int			win_height;
-	int			calimg;
 }	t_game;
 
 void	check_map_validity(t_game *game, char *map_path);
@@ -87,9 +83,5 @@ int		load_map_data(t_game *game, int fd);
 int		rgb(int r, int g, int b);
 int		check_if_closed(t_game *game, int x, int y);
 void	set_img(t_game *game);
-
-
-// a retirer
-void printmap(char **map);
 
 #endif

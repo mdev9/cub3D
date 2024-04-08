@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/05 17:24:46 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:37:57 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void	set_wall(t_game *game)
 	game->ray->wall_size = HEIGHT / game->ray->dist;
 	game->ray->wall_start = (HEIGHT - game->ray->wall_size) / 2;
 	game->ray->wall_end = (HEIGHT + game->ray->wall_size) / 2;
-	// printf("dist =%f\n", game->ray->dist);
-	// printf("wall =%d\n", game->ray->wall_size);
-	// printf("start wall =%d\n", game->ray->wall_start);
-	// printf("end wall =%d\n", game->ray->wall_end);
 }
 
 void	set_img(t_game *game)
@@ -34,7 +30,7 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->ray = ((game->player->vect->angle - FOV / 2 + (double)i) / (double)WIDTH) * FOV;
+		game->ray->ray = game->player->vect->angle;
 		printf("ray =%f\n", game->ray->ray);
 		set_raycaster(game);
 		set_wall(game);

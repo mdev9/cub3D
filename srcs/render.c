@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/08 16:37:44 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:38:39 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	set_img(t_game *game)
 				game->mlx_win, i, j, game->ceilling_color);
 		while (++j < game->ray->wall_end)
 			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, j, 0xFA000088);
+				game->mlx_win, i, j, 0x555500FF);
 		while (++j < HEIGHT)
 			mlx_pixel_put(game->mlx, \
 				game->mlx_win, i, j, game->floor_color);

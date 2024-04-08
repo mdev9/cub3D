@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/05 15:56:30 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:31:18 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ int	display_large_map(t_game *game, int x, int y)
 void	change_angle(int keycode, t_game *game)
 {
 	if (keycode == 79)
-		game->player->vect->angle = (game->player->vect->angle + 10) % 360;
+		game->player->vect->angle = (game->player->vect->angle + 5) % 360;
 	else if (keycode == 80)
-		game->player->vect->angle -= 10;
+		game->player->vect->angle -= 5;
 	if (game->player->vect->angle < 0)
 		game->player->vect->angle = 360 + game->player->vect->angle;
 	render_map(game);

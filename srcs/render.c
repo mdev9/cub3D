@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/08 11:16:19 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:32:05 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	set_wall(t_game *game)
 {
-	game->ray->wall_size = HEIGHT / game->ray->dist;
-	game->ray->wall_start = (HEIGHT - game->ray->wall_size) / 2;
-	game->ray->wall_end = (HEIGHT + game->ray->wall_size) / 2;
+	game->ray->wall_size = (double)HEIGHT / game->ray->dist;
+	game->ray->wall_start = ((double)HEIGHT - game->ray->wall_size) / 2;
+	game->ray->wall_end = ((double)HEIGHT + game->ray->wall_size) / 2;
 }
 
 void	set_img(t_game *game)
@@ -30,7 +30,8 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->ray = (double) game->player->vect->angle / (FOV + i) + (double)WIDTH / FOV;
+		// game->ray->ray = (WIDTH / (double)FOV) / ((double)i + (double)game->player->vect->angle + 1);
+		game->ray->ray = (double)WIDTH / (double)FOV / 2 - (double)game->player->vect->angle / (FOV + i + 2);
 		printf("ray =%f\n", game->ray->ray);
 		set_raycaster(game);
 		set_wall(game);

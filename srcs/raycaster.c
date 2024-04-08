@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/08 14:48:43 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:11:22 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	raysendmapp(t_game *game)
 
 void	set_raycaster(t_game *game)
 {
-	game->ray->ray += 1;
+	game->ray->ray += PI;
 	raysendmapp(game);
 }

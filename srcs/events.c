@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/08 13:31:18 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:03:28 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,27 @@ void	change_player_pos(int keycode, t_game *game)
 {
 	if (keycode == 7)
 	{
-		if (game->map[(int)game->player->y][(int)(game->player->x + 0.4)]
+		if (game->map[(int)game->player->y][(int)(game->player->x + SPEED)]
 			!= '1')
-			game->player->x += 0.4;
+			game->player->x += SPEED;
 	}
 	else if (keycode == 4)
 	{
-		if (game->map[(int)game->player->y][(int)(game->player->x - 0.4)]
+		if (game->map[(int)game->player->y][(int)(game->player->x - SPEED)]
 			!= '1')
-			game->player->x -= 0.4;
+			game->player->x -= SPEED;
 	}
 	else if (keycode == 22)
 	{
-		if (game->map[(int)(game->player->y + 0.4)][(int)game->player->x]
+		if (game->map[(int)(game->player->y + SPEED)][(int)game->player->x]
 			!= '1')
-			game->player->y += 0.4;
+			game->player->y += SPEED;
 	}
 	else if (keycode == 26)
 	{
-		if (game->map[(int)(game->player->y - 0.4)][(int)game->player->x]
+		if (game->map[(int)(game->player->y - SPEED)][(int)game->player->x]
 			!= '1')
-			game->player->y -= 0.4;
+			game->player->y -= SPEED;
 	}
 	render_map(game);
 }

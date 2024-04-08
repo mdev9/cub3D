@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/08 09:37:57 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:16:19 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->ray = game->player->vect->angle;
+		game->ray->ray = (double) game->player->vect->angle / (FOV + i) + (double)WIDTH / FOV;
 		printf("ray =%f\n", game->ray->ray);
 		set_raycaster(game);
 		set_wall(game);

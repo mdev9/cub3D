@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/08 09:28:03 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:06:23 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void	raysendmapp(t_game *game)
 	game->ray->deltay = fabs(game->ray->deltay - game->player->y);
 	// printf("deltax = %f\t deltay = %f\n", game->ray->deltax * game->ray->deltax, game->ray->deltay * game->ray->deltay);
 	game->ray->dist = sqrt(game->ray->deltax * game->ray->deltax + game->ray->deltay * game->ray->deltay);
+	printf("dist = %f\n", game->ray->dist);
 	if (game->ray->dist < 1)
 		game->ray->dist = 1;
 }
 
 void	set_raycaster(t_game *game)
 {
-	// game->ray->ray += STEP;
+	game->ray->ray += STEP;
 	raysendmapp(game);
 }

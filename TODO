@@ -1,23 +1,25 @@
 /*
 =================I======================
-# -->leack sur la copy de check_map
+# --> leack sur la copy de check_map
 
-# -->ajouster les mouvement par rapport a
+# --> ajouster les mouvement par rapport a
 l'angle de vu quand on est en 3D
 
-# -->parsing a finir le parsing
+# --> rayon sur la grande map
 
-# -->ranger les fichiers && NORM.
+# --> parsing a finir le parsing
 
 =================II=====================
 
-# -->minicarte
+# --> minicarte
 
-# -->angle sur les murs
+# --> angle sur les murs
 
 =================III====================
 
 # --> sprite des murs
+
+# --> amelirer les performances
 
 */
 

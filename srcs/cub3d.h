@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/09 14:20:03 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:30:01 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_game
 void	put_path_in_struct(t_game *game, char *line, char *identifier);
 void	check_map_validity(t_game *game, char *map_path);
 void	exit_game(t_game *game, char *error_message);
+void	put_ray(t_game *game, int ray_x, int ra_y);
 void	check_input_validity(int ac, char **av);
 void	resize_map(t_game *game, int new_size);
 void	free_map(t_game *game, char **map);

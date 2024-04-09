@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/09 10:18:41 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:47:06 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	window_event(int value, void *game)
 	return (0);
 }
 
-void	change_player_pos(int keycode, t_game *game)
+void	change_player_pos_in_map(int keycode, t_game *game)
 {
 	if (keycode == 7)
 	{
@@ -50,7 +50,13 @@ void	change_player_pos(int keycode, t_game *game)
 			!= '1')
 			game->player->y -= SPEED;
 	}
-	render_map(game);
+	if (game->ray->is_d_map)
+	{
+		mlx_clear_window(game->mlx, game->mlx_win);
+		display_large_map(game, 0, 0);
+	}
+	else
+		render_map(game);
 }
 
 void	put_player(t_game *game, int playerx, int playery)
@@ -98,6 +104,7 @@ int	display_large_map(t_game *game, int x, int y)
 	return (0);
 }
 
+
 void	change_angle(int keycode, t_game *game)
 {
 	if (keycode == 79)
@@ -106,7 +113,23 @@ void	change_angle(int keycode, t_game *game)
 		game->player->vect->angle -= 5;
 	if (game->player->vect->angle < 0)
 		game->player->vect->angle = 360 + game->player->vect->angle;
-	render_map(game);
+	if (game->ray->is_d_map)
+	{
+		mlx_clear_window(game->mlx, game->mlx_win);
+		display_large_map(game, 0, 0);
+	}
+	else
+		render_map(game);
+}
+int	mousedown_event(int keycode, void *game_data)
+{
+	t_game	*game;
+
+	game = (t_game *)game_data;
+	// ft_printf("%d\n", keycode);
+	if (keycode == 1)
+		game->player->vect->use_mouse = !game->player->vect->use_mouse;
+	return (0);
 }
 
 int	keydown_event(int keycode, void *game_data)
@@ -120,11 +143,15 @@ int	keydown_event(int keycode, void *game_data)
 	else if (keycode == 79 || keycode == 80)
 		change_angle(keycode, game);
 	else if (keycode == 26 || keycode == 4 || keycode == 22 || keycode == 7)
-		change_player_pos(keycode, game);
+		change_player_pos_in_map(keycode, game);
 	else if (keycode == 16)
 	{
 		mlx_clear_window(game->mlx, game->mlx_win);
-		display_large_map(game, 0, 0);
+		game->ray->is_d_map = !game->ray->is_d_map;
+		if (game->ray->is_d_map)
+			display_large_map(game, 0, 0);
+		else
+			render_map(game);
 	}
 	return (0);
 }

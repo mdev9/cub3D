@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/09 10:22:31 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:49:53 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	raysendmapp(t_game *game)
 	while (game->map[(int)(game->ray->deltay)][(int)(game->ray->deltax)]
 		&& game->map[(int)(game->ray->deltay)][(int)(game->ray->deltax)] != '1')
 	{
-		game->ray->deltax += sin(game->ray->ray) / (FOV + 10);
-		game->ray->deltay += cos(game->ray->ray) / (FOV + 10);
+		game->ray->deltax += sin(game->ray->ray) / (ANTIALIASING);
+		game->ray->deltay += cos(game->ray->ray) / (ANTIALIASING);
 	}
 	game->ray->deltax = (game->ray->deltax - game->player->x);
 	game->ray->deltay = (game->ray->deltay - game->player->y);

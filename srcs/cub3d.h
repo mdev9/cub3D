@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/09 10:21:35 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:35:53 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 typedef struct s_vect
 {
 	int	angle;
+	int	use_mouse;
 }	t_vect;
 
 typedef struct s_player
@@ -72,7 +73,9 @@ void	set_raycaster(t_game *game);
 void	render_map(t_game *game);
 void	set_wall(t_game *game);
 void	set_img(t_game *game);
+
 int		check_color_info(t_game *game, char *line, char identifier);
+int		mousedown_event(int keycode, void *game_data);
 int		check_if_closed(t_game *game, int x, int y);
 int		keydown_event(int keycode, void *game);
 int		line_is_only_char(char *line, int c);

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/09 13:15:11 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:12:37 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	set_wall(t_game *game)
 	game->ray->wall_end = ((double)HEIGHT + game->ray->wall_size) / 2;
 }
 
-
 void	set_img(t_game *game)
 {
 	int	i;
@@ -31,7 +30,8 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->ray = ((double)game->player->vect->angle * PI / 180) + i / ((double)HEIGHT);
+		game->ray->ray = ((double)game->player->vect->angle * PI / 180)
+			+ i / ((double)HEIGHT);
 		set_raycaster(game);
 		set_wall(game);
 		j = -1;

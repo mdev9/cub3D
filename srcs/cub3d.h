@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/09 13:35:53 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:20:03 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	set_img(t_game *game);
 int		check_color_info(t_game *game, char *line, char identifier);
 int		mousedown_event(int keycode, void *game_data);
 int		check_if_closed(t_game *game, int x, int y);
+int		display_large_map(t_game *game, int x, int y);
 int		keydown_event(int keycode, void *game);
 int		line_is_only_char(char *line, int c);
 int		window_event(int value, void *game);

@@ -1,17 +1,18 @@
 CC = clang
 
-SRCS_RAW =	main.c\
-			parsing.c\
-			render.c\
-			input_parsing.c\
-			parsing_utils.c\
-			map_closed_check.c\
-			path.c\
-			events.c\
-			color.c\
-			map.c\
-			free.c\
-			raycaster.c
+SRCS_RAW =	main.c				\
+			parsing.c			\
+			render.c			\
+			input_parsing.c		\
+			parsing_utils.c		\
+			map_closed_check.c	\
+			path.c				\
+			events.c			\
+			color.c				\
+			map.c				\
+			free.c				\
+			raycaster.c			\
+			display_large_map.c
 
 OBJS_DIR = objs/
 

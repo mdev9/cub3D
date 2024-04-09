@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/05 10:53:33 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:19:25 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	get_player_spawn_pos(t_game **game)
 				if (!(*game)->player->vect)
 					exit_game(*game, 0);
 				get_orientation(game, (*game)->map[i][j]);
-				break;
+				break ;
 			}
 			j++;
 		}

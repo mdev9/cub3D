@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/08 16:03:28 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:18:41 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,31 @@ void	change_player_pos(int keycode, t_game *game)
 
 void	put_player(t_game *game, int playerx, int playery)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = -1;
 	while (++x < 5)
 	{
 		y = -1;
 		while (++y < 5)
-			mlx_pixel_put(game->mlx, game->mlx_win, playerx * 32 + x + 16 + WIDTH / 4,
-				playery * 32 + y + 16 + HEIGHT / 4, 0xFF0000FF);
+			mlx_pixel_put(game->mlx, game->mlx_win, playerx * 32 + x + 16
+				+ WIDTH / 4, playery * 32 + y + 16 + HEIGHT / 4, 0xFF0000FF);
 	}
 }
 
 void	put_mapwall(t_game *game, int wall_x, int wall_y)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = -1;
 	while (++x < 32)
 	{
 		y = -1;
 		while (++y < 32)
-			mlx_pixel_put(game->mlx, game->mlx_win, wall_x  * 32 + x + WIDTH / 4,
-				wall_y  * 32 + y + HEIGHT / 4, 0xFF00A300);
+			mlx_pixel_put(game->mlx, game->mlx_win, wall_x * 32 + x + WIDTH / 4,
+				wall_y * 32 + y + HEIGHT / 4, 0xFF00A300);
 	}
 }
 

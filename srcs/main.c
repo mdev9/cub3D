@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/10 14:24:15 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:07:39 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@ void	change_by_mouse(t_game *game)
 		return ;
 	game->mouse->x = x;
 	game->mouse->y = y;
-	game->player->vect->angle += (int)((game->mouse->x - WIDTH / 2)) % 360 / 20;
+	game->player->vect->angle += (int)((game->mouse->x - WIDTH / 2)) % 360 / 15;
+	if (game->player->vect->angle < 0)
+		game->player->vect->angle = 360 + game->player->vect->angle;
+	else
+		game->player->vect->angle %= 360;
 	mlx_mouse_move(game->mlx, game->mlx_win, WIDTH / 2, HEIGHT / 2);
 	render_map(game);
 }

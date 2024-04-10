@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/10 13:15:37 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:07:51 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,40 @@ void	change_player_pos_in_map(int keycode, t_game *game)
 	else
 		render_map(game);
 }
-// double	speedtoangle(int keycode, t_game *game, int axe)
-// {
-	
-// 	return (radian);
-// }
 
 void	change_player_pos(int keycode, t_game *game)
 {
 	double	speedx;
 	double	speedy;
 	
-	(void) keycode;
-	speedx = SPEED + cos(game->player->vect->angle);// speedtoangle(keycode, game, 1);
-	speedy = SPEED + sin(game->player->vect->angle);// speedtoangle(keycode, game, 0);
-	// printf ("speedx = %d\t speedy = %f\n", speedx, speedy);
-	// printf ("posx = %f\t posy = %f\n", game->player->x, game->player->y);
-	if (speedy > game->map_size ||
-		!game->map[(int)(game->player->y + speedx)][(int)(game->player->x + speedy)] ||
-		game->map[(int)(game->player->y + speedx)][(int)(game->player->x + speedy)] == '1')
-		return ;
-	game->player->y += speedx;
+	if (keycode == 26)
+	{
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
+		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
+	}
+	else if (keycode == 22)
+	{
+		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
+		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
+	}
+	else if (keycode == 7)
+	{
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
+		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
+	}
+	else
+	{
+		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
+		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
+	}
+	// printf ("speedx = %f\t speedy = %f\n", speedx, speedy);
+	if (speedy >= game->map_size ||
+		!game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] ||
+		game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] == '1')
+			return ;
+	game->player->x += speedx;
 	game->player->y += speedy;
+	// printf ("posx = %f\t posy = %f\n", game->player->x, game->player->y);
 	mlx_clear_window(game->mlx, game->mlx_win);
 	if (game->ray->is_d_map)
 		display_large_map(game, 0, 0);
@@ -95,7 +107,7 @@ void	change_player_pos(int keycode, t_game *game)
 }
 void	change_angle(int keycode, t_game *game)
 {
-
+	// printf ("angle = %d\n", game->player->vect->angle);
 	if (keycode == 79)
 		game->player->vect->angle = (game->player->vect->angle + 5) % 360;
 	else if (keycode == 80)
@@ -121,9 +133,9 @@ int	keydown_event(int keycode, void *game_data)
 		change_angle(keycode, game);
 	else if (keycode == 26 || keycode == 4 || keycode == 22 || keycode == 7)
 	{
-		if (game->ray->is_d_map)
-			change_player_pos_in_map(keycode, game);
-		else
+		// if (game->ray->is_d_map)
+		// 	change_player_pos_in_map(keycode, game);
+		// else
 			change_player_pos(keycode, game);	
 	}
 	else if (keycode == 16)

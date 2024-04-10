@@ -1,19 +1,21 @@
 /*
 =================I======================
-# --> leack sur la copy de check_map && img
+# --> leack sur la copy de check_map && ray de set_img
 
-# --> ajouster les mouvement par rapport a
-l'angle de vu quand on est en 3D
-
-# --> rayon sur la grande map
+# --> deplacement dans le mode isometrique
 
 # --> parsing a finir le parsing
 
+# --> corriger le fish eye
+
+# --> amelioroer la direction
 =================II=====================
 
 # --> minicarte
 
-# --> angle sur les murs
+# --> angle moi rond sur les murs
+
+# --> rayon sur la grande map
 
 =================III====================
 

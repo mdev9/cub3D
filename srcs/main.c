@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/09 14:48:49 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/10 14:24:15 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ void	change_by_mouse(t_game *game)
 	int	x;
 	int	y;
 
-	x = WIDTH / 2;
-	y = HEIGHT / 2;
 	mlx_mouse_get_pos(game->mlx, &x, &y);
-	game->player->vect->angle = (x - WIDTH / 2) % 360;
-	if (game->player->vect->angle < 0)
-		game->player->vect->angle = 360 + game->player->vect->angle;
+	if (game->mouse->x == x)
+		return ;
+	game->mouse->x = x;
+	game->mouse->y = y;
+	game->player->vect->angle += (int)((game->mouse->x - WIDTH / 2)) % 360 / 20;
+	mlx_mouse_move(game->mlx, game->mlx_win, WIDTH / 2, HEIGHT / 2);
+	render_map(game);
 }
 
 int	game_loop(void *s_game)
@@ -58,11 +60,20 @@ int	game_loop(void *s_game)
 
 	game = (t_game *) s_game;
 	if (game->player->vect->use_mouse && !game->ray->is_d_map)
-	{
 		change_by_mouse(game);
-		render_map(game);
-	}
 	return (0);
+}
+void	init_mouse(t_game *game)
+{
+	int x;
+	int y;
+	
+	game->mouse = ft_calloc(1, sizeof(t_mouse));
+	if (!game->mouse)
+		exit_game(game, 0);
+	mlx_mouse_get_pos(game->mlx, &x, &y);
+	game->mouse->x = x;
+	game->mouse->y = y;
 }
 
 int	init_game(t_game *game)
@@ -72,6 +83,7 @@ int	init_game(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, WIDTH,
 			HEIGHT, "cub3D");
 	mlx_mouse_hide();
+	init_mouse(game);
 	if (!game->player->vect->use_mouse)
 		render_map(game);
 	mlx_loop_hook(game->mlx, game_loop, game);

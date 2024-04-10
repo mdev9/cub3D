@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/09 17:38:23 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:15:37 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void	change_player_pos(int keycode, t_game *game)
 	double	speedy;
 	
 	(void) keycode;
-	speedx = SPEED * cos(game->player->vect->angle);// speedtoangle(keycode, game, 1);
-	speedy = SPEED * sin(game->player->vect->angle);// speedtoangle(keycode, game, 0);
-	printf ("speedx = %f\t speedy = %f\n", speedx, speedy);
+	speedx = SPEED + cos(game->player->vect->angle);// speedtoangle(keycode, game, 1);
+	speedy = SPEED + sin(game->player->vect->angle);// speedtoangle(keycode, game, 0);
 	// printf ("speedx = %d\t speedy = %f\n", speedx, speedy);
+	// printf ("posx = %f\t posy = %f\n", game->player->x, game->player->y);
 	if (speedy > game->map_size ||
 		!game->map[(int)(game->player->y + speedx)][(int)(game->player->x + speedy)] ||
 		game->map[(int)(game->player->y + speedx)][(int)(game->player->x + speedy)] == '1')
@@ -95,6 +95,7 @@ void	change_player_pos(int keycode, t_game *game)
 }
 void	change_angle(int keycode, t_game *game)
 {
+
 	if (keycode == 79)
 		game->player->vect->angle = (game->player->vect->angle + 5) % 360;
 	else if (keycode == 80)

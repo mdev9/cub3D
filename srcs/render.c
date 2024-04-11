@@ -6,11 +6,20 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/09 17:37:30 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:23:50 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	render_by_view(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->mlx_win);
+	if (game->ray->is_d_map)
+		display_large_map(game, 0, 0);
+	else
+		render_map(game);
+}
 
 void	set_wall(t_game *game)
 {
@@ -18,7 +27,28 @@ void	set_wall(t_game *game)
 	game->ray->wall_start = ((double)HEIGHT - game->ray->wall_size) / 2;
 	game->ray->wall_end = ((double)HEIGHT + game->ray->wall_size) / 2;
 }
+void	display_wall(t_game * game, int i, int *j)
+{
+	while (++*j < game->ray->wall_end)
+	{
+		if ((sin(game->ray->deltax) < 1 && sin(game->ray->deltax) > 0) || (cos(game->ray->deltax) < 1 && cos(game->ray->deltax) > 0))
+			mlx_pixel_put(game->mlx, \
+				game->mlx_win, i, *j, 0x550000FF);
+	}
+}
 
+void	display_img(t_game *game, int i, int *j)
+{
+	while (++*j < game->ray->wall_start)
+		mlx_pixel_put(game->mlx, \
+			game->mlx_win, i, *j, game->ceilling_color);
+	(*j)--;
+	display_wall(game, i, j);
+	(*j)--;
+	while (++*j < HEIGHT)
+		mlx_pixel_put(game->mlx, \
+			game->mlx_win, i, *j, game->floor_color);
+}
 void	set_img(t_game *game)
 {
 	int	i;
@@ -35,15 +65,7 @@ void	set_img(t_game *game)
 		set_raycaster(game);
 		set_wall(game);
 		j = -1;
-		while (++j < game->ray->wall_start)
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, j, game->ceilling_color);
-		while (++j < game->ray->wall_end)
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, j, 0x550000FF);
-		while (++j < HEIGHT)
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, j, game->floor_color);
+		display_img(game, i, &j);
 	}
 }
 

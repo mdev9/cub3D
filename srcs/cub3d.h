@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/11 10:07:00 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:15:02 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		keydown_event(int keycode, void *game);
 int		window_event(int value, void *game);
 
 //RENDER//
+void	render_by_view(t_game *game);
 void	render_map(t_game *game);
 
 int		display_large_map(t_game *game, int x, int y);

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/11 09:58:59 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:06:56 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ int	window_event(int value, void *game)
 	if (value == 0)
 		exit_game(s_game, 0);
 	return (0);
-}
-
-
-
-void	render_by_view(t_game *game)
-{
-	mlx_clear_window(game->mlx, game->mlx_win);
-	if (game->ray->is_d_map)
-		display_large_map(game, 0, 0);
-	else
-		render_map(game);
 }
 
 void	change_player_pos_in_map(int keycode, t_game *game)
@@ -110,9 +99,9 @@ int	keydown_event(int keycode, void *game_data)
 		change_angle(keycode, game);
 	else if (keycode == 26 || keycode == 4 || keycode == 22 || keycode == 7)
 	{
-		if (game->ray->is_d_map)
-			change_player_pos_in_map(keycode, game);
-		else
+		// if (game->ray->is_d_map)
+		// 	change_player_pos_in_map(keycode, game);
+		// else
 			change_player_pos(keycode, game);
 	}
 	else if (keycode == 16)

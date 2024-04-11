@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/11 11:23:50 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:17:12 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,18 @@ void	display_wall(t_game * game, int i, int *j)
 {
 	while (++*j < game->ray->wall_end)
 	{
-		if ((sin(game->ray->deltax) < 1 && sin(game->ray->deltax) > 0) || (cos(game->ray->deltax) < 1 && cos(game->ray->deltax) > 0))
+		if (sin(game->ray->deltax ) < 0 && cos(game->ray->deltax) > 0)
 			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, *j, 0x550000FF);
+				game->mlx_win, i, *j, 0x55FF00FF + (int) cos(PI * game->ray->ray) * *j);
+		else if (sin(game->ray->deltax ) > 0 && cos(game->ray->deltax ) > 0)
+			mlx_pixel_put(game->mlx, \
+				game->mlx_win, i, *j, 0xAA0000FF * *j - HEIGHT - i);
+		else if (sin(game->ray->deltax ) < 0 && cos(game->ray->deltax ) < 0)
+			mlx_pixel_put(game->mlx, \
+				game->mlx_win, i, *j, 0x55FFFF00  * *j / 9 - i);
+		else
+			mlx_pixel_put(game->mlx, \
+				game->mlx_win, i, *j, 0x550000FF * i - (i + game->floor_color));
 	}
 }
 
@@ -41,13 +50,13 @@ void	display_img(t_game *game, int i, int *j)
 {
 	while (++*j < game->ray->wall_start)
 		mlx_pixel_put(game->mlx, \
-			game->mlx_win, i, *j, game->ceilling_color);
+			game->mlx_win, i, *j, game->ceilling_color - (i * PI) - (int)*j + 1 * PI / WIDTH);
 	(*j)--;
 	display_wall(game, i, j);
 	(*j)--;
 	while (++*j < HEIGHT)
 		mlx_pixel_put(game->mlx, \
-			game->mlx_win, i, *j, game->floor_color);
+			game->mlx_win, i, *j, game->floor_color + tanf(*j) - PI);
 }
 void	set_img(t_game *game)
 {

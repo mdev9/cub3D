@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/10 14:01:58 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:07:00 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,30 +70,47 @@ typedef struct s_game
 	int			ceilling_color;
 }	t_game;
 
-void	put_path_in_struct(t_game *game, char *line, char *identifier);
+//MOUSE//
+void	change_by_mouse(t_game *game);
+void	init_mouse(t_game *game);
+
+//CHECK//
 void	check_map_validity(t_game *game, char *map_path);
-void	exit_game(t_game *game, char *error_message);
 void	check_input_validity(int ac, char **av);
-void	resize_map(t_game *game, int new_size);
-void	free_map(t_game *game, char **map);
-void	set_raycaster(t_game *game);
-void	render_map(t_game *game);
-void	set_wall(t_game *game);
-void	set_img(t_game *game);
-void	put_ray(t_game *game);
 
 int		check_color_info(t_game *game, char *line, char identifier);
-int		mousedown_event(int keycode, void *game_data);
 int		check_if_closed(t_game *game, int x, int y);
-int		display_large_map(t_game *game, int x, int y);
-int		keydown_event(int keycode, void *game);
 int		line_is_only_char(char *line, int c);
-int		window_event(int value, void *game);
-int		load_map_data(t_game *game, int fd);
-int		open_file(char *map_path);
 int		line_is_empty(char *line);
-int		rgb(int r, int g, int b);
-int		is_whitespace(int c);
 int		char_is_valid(int c);
+int		is_whitespace(int c);
+
+//EVENT//
+int		mousedown_event(int keycode, void *game_data);
+int		keydown_event(int keycode, void *game);
+int		window_event(int value, void *game);
+
+//RENDER//
+void	render_map(t_game *game);
+
+int		display_large_map(t_game *game, int x, int y);
+
+//SET && INIT//
+void	set_raycaster(t_game *game);
+void	set_wall(t_game *game);
+void	set_img(t_game *game);
+
+int		load_map_data(t_game *game, int fd);
+
+//EXIT && FREE//
+void	exit_game(t_game *game, char *error_message);
+void	free_map(t_game *game, char **map);
+
+//OTHER//
+void	put_path_in_struct(t_game *game, char *line, char *identifier);
+void	resize_map(t_game *game, int new_size);
+
+int		open_file(char *map_path);
+int		rgb(int r, int g, int b);
 
 #endif

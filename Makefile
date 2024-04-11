@@ -12,7 +12,8 @@ SRCS_RAW =	main.c				\
 			map.c				\
 			free.c				\
 			raycaster.c			\
-			display_large_map.c
+			display_large_map.c	\
+			mouse.c
 
 OBJS_DIR = objs/
 

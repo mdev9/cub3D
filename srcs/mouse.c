@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:55:01 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/11 09:59:15 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:00:32 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	change_by_mouse(t_game *game)
 	else
 		game->player->vect->angle %= 360;
 	mlx_mouse_move(game->mlx, game->mlx_win, WIDTH / 2, HEIGHT / 2);
+	mlx_clear_window(game->mlx, game->mlx_win);
 	render_map(game);
 }
 

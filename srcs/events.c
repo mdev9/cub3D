@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/11 11:06:56 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/13 15:29:44 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	change_player_pos(int keycode, t_game *game)
 	}
 	else if (keycode == 7)
 	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180) - SPEED * sin(game->player->vect->angle * PI / 180);
 		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
 	}
 	else
 	{
-		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180) - SPEED * sin(game->player->vect->angle * PI / 180);
+		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
 	}
 	// printf ("speedx = %f\t speedy = %f\n", speedx, speedy);
 	if (speedy >= game->map_size || \
@@ -99,9 +99,9 @@ int	keydown_event(int keycode, void *game_data)
 		change_angle(keycode, game);
 	else if (keycode == 26 || keycode == 4 || keycode == 22 || keycode == 7)
 	{
-		// if (game->ray->is_d_map)
-		// 	change_player_pos_in_map(keycode, game);
-		// else
+		if (game->ray->is_d_map)
+			change_player_pos_in_map(keycode, game);
+		else
 			change_player_pos(keycode, game);
 	}
 	else if (keycode == 16)

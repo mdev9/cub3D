@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/11 10:15:02 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/14 14:41:03 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "raycaster.h"
 # include <stdbool.h>
 # include <math.h>
+# include <sys/time.h>
 
 # define N -1
 # define S 1
@@ -97,6 +98,7 @@ void	render_map(t_game *game);
 int		display_large_map(t_game *game, int x, int y);
 
 //SET && INIT//
+void	set_wall_dir(t_game *game,int x, int y);
 void	set_raycaster(t_game *game);
 void	set_wall(t_game *game);
 void	set_img(t_game *game);

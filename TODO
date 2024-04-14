@@ -4,15 +4,17 @@
 # --> couleur selon l angle du mur;
 
 =================I======================
+
 # --> leack sur la copy de check_map && ray de set_img
 
-# --> deplacement dans le mode isometrique
+# --> corriger deplacement dans le mode isometrique
 
 # --> parsing a finir le parsing
 
 # --> corriger le fish eye
 
-# --> amelioroer la direction
+# --> ameliorer la direction
+
 =================II=====================
 
 # --> minicarte
@@ -30,6 +32,9 @@
 # --> amination
 
 # --> porte
+
+# --> optimisation
+
 
 */
 

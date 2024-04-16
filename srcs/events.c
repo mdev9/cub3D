@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/13 15:29:44 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:41:07 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	change_player_pos(int keycode, t_game *game)
 
 	if (keycode == 26)
 	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
+		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
+		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
 	}
 	else if (keycode == 22)
 	{
-		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
 		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
 	}
 	else if (keycode == 7)

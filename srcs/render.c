@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/14 16:24:34 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:25:55 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,13 @@ void    put_fps(t_game *game, int need_free)
 
 void	set_wall(t_game *game)
 {
-	game->ray->wall_size = (double)HEIGHT / game->ray->dist;
-	game->ray->wall_start = ((double)HEIGHT - game->ray->wall_size) / 2;
-	game->ray->wall_end = ((double)HEIGHT + game->ray->wall_size) / 2;
+	game->ray->wall_size = (int){HEIGHT / game->ray->dist};
+	game->ray->wall_start = (HEIGHT - game->ray->wall_size) / 2;
+	if (game->ray->wall_start < 0)
+		game->ray->wall_start = 0;
+	game->ray->wall_end = (game->ray->wall_size + HEIGHT) / 2;
+	if (game->ray->wall_end >= HEIGHT)
+		game->ray->wall_end = HEIGHT - 1;
 }
 void	display_wall(t_game * game, int i, int *j)
 {
@@ -85,8 +89,9 @@ void	display_img(t_game *game, int i, int *j)
 }
 void	set_img(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	double	camerax;
 
 	game->ray = ft_calloc(sizeof(t_raycaster), 1);
 	if (!game->ray)
@@ -94,9 +99,10 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->ray = ((double)game->player->vect->angle * PI / 180)
-			+ i / ((double)HEIGHT) + 0.8;
-		// printf("ray = %f\n", game->ray->ray);
+		camerax = 2 * i / (double)WIDTH - 1;
+		game->ray->rayx = cos(game->player->vect->angle * PI / 180) + 0 * camerax; 
+		game->ray->rayy = sin(game->player->vect->angle * PI / 180) + 0.66 * camerax;
+		// printf("rax %f\t ray %f\n", game->ray->rayx, game->ray->rayy );
 		set_raycaster(game);
 		set_wall(game);
 		j = -1;

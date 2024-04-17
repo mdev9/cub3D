@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/16 14:25:55 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:52:17 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,13 @@ void	set_img(t_game *game)
 {
 	int		i;
 	int		j;
-	double	camerax;
 
-	game->ray = ft_calloc(sizeof(t_raycaster), 1);
-	if (!game->ray)
-		exit_game(game, 0);
 	i = -1;
 	while (++i < WIDTH)
 	{
-		camerax = 2 * i / (double)WIDTH - 1;
-		game->ray->rayx = cos(game->player->vect->angle * PI / 180) + 0 * camerax; 
-		game->ray->rayy = sin(game->player->vect->angle * PI / 180) + 0.66 * camerax;
-		// printf("rax %f\t ray %f\n", game->ray->rayx, game->ray->rayy );
+		game->ray->rayx = cos((game->player->vect->angle * PI / 180 - 0.8) + i / ((double)HEIGHT));
+		game->ray->rayy = sin((game->player->vect->angle * PI / 180 - 0.8) + i / ((double)HEIGHT));
+		// printf("rax %f\t ray %f\n", game->ray->rayx, game->ray->rayy);
 		set_raycaster(game);
 		set_wall(game);
 		j = -1;

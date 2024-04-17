@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/12 14:35:54 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/17 10:52:51 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ void	get_player_spawn_pos(t_game **game)
 		{
 			if (char_is_spawn_pos((*game)->map[i][j]))
 			{
-				(*game)->player->x = j;
-				(*game)->player->y = i;
+				(*game)->player->x = j + 0.5;
+				(*game)->player->y = i + 0.5;
 				(*game)->player->vect = ft_calloc(1, sizeof(t_vect));
 				if (!(*game)->player->vect)
 					exit_game(*game, 0);

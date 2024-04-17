@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/14 11:50:32 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:02:43 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@ void	load_textures(t_game *game)
 	load_texture(game, &game->texture->ea);
 }
 
+void	check_input_touch(t_game *game)
+{
+		// if (game->ray->is_d_map)
+		// 	change_player_pos_in_map(keycode, game);
+		// else
+		// 	change_player_pos(keycode, game);
+	if (game->input[0])
+		change_player_pos(26 ,game);
+	else if (game->input[1])
+		change_player_pos(22, game);
+	else if (game->input[2])
+		change_player_pos(7, game);
+	else if (game->input[3])
+		change_player_pos(4, game);
+	else if (game->input[4])
+		change_angle(79, game);
+	else if (game->input[5])
+		change_angle(80, game);
+}
+
 int	game_loop(void *s_game)
 {
 	t_game	*game;
@@ -46,7 +66,26 @@ int	game_loop(void *s_game)
 	game = (t_game *) s_game;
 	if (game->player->vect->use_mouse && !game->ray->is_d_map)
 		change_by_mouse(game);
+	check_input_touch(game);
 	return (0);
+}
+
+void	init_ray(t_game *game)
+{
+	game->ray = ft_calloc(sizeof(t_raycaster), 1);
+	if (!game->ray)
+		exit_game(game, 0);
+	game->ray->planex = 0;
+	game->ray->planey = 0.66;
+}
+
+void	init_input(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i++ < 6)
+		game->input[i] = 0;
 }
 
 int	init_game(t_game *game)
@@ -56,11 +95,14 @@ int	init_game(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, WIDTH,
 			HEIGHT, "cub3D");
 	mlx_mouse_hide();
+	init_ray(game);
 	init_mouse(game);
+	init_input(game);
 	if (!game->player->vect->use_mouse)
 		render_map(game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_on_event(game->mlx, game->mlx_win, MLX_KEYDOWN, keydown_event, game);
+	mlx_on_event(game->mlx, game->mlx_win, MLX_KEYUP, keydown_eventup, game);
 	mlx_on_event(game->mlx, game->mlx_win, MLX_MOUSEDOWN,
 		mousedown_event, game);
 	mlx_on_event(game->mlx, game->mlx_win,

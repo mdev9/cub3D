@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/16 10:14:11 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:04:27 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_game
 	int			map_size;
 	int			floor_color;
 	int			ceilling_color;
+	int			input[6];
 }	t_game;
 
 //MOUSE//
@@ -90,6 +91,7 @@ int		is_whitespace(int c);
 int		mousedown_event(int keycode, void *game_data);
 int		keydown_event(int keycode, void *game);
 int		window_event(int value, void *game);
+int		keydown_eventup(int keycode, void *game_data);
 
 //RENDER//
 void	render_by_view(t_game *game);
@@ -110,6 +112,8 @@ void	free_map(t_game *game, char **map);
 
 //OTHER//
 void	put_path_in_struct(t_game *game, char *line, char *identifier);
+void	change_player_pos(int keycode, t_game *game);
+void	change_angle(int keycode, t_game *game);
 void	resize_map(t_game *game, int new_size);
 
 int		open_file(char *map_path);

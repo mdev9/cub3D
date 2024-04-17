@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/17 16:49:05 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:37:19 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	set_wall_color(t_game *game, int side)
 	if (side)
 	{
 		if (game->ray->rayy > 0 &&  game->ray->rayy < PI)
-			game->ray->color = 0xFFFF0000;//
+			game->ray->color = 0x55FF0000;//
 		else
-			game->ray->color = 0xFF00FF00;//
+			game->ray->color = 0x5500FF00;//
 
 	}
 	else
 	{
 		if (game->ray->rayx + PI > PI && game->ray->rayx + PI < 3 * PI / 2)
-			game->ray->color = 0xFF0000FF;//
+			game->ray->color = 0x550000FF;//
 		else
-			game->ray->color = 0xFFFF00FF;//
+			game->ray->color = 0x55FF00FF;//
 	}
 }
 

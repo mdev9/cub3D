@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/17 16:02:43 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/18 11:21:23 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,27 @@ void	load_textures(t_game *game)
 	load_texture(game, &game->texture->we);
 	load_texture(game, &game->texture->ea);
 }
+void	move_by_render(int keycode, t_game *game)
+{
+	if (game->ray->is_d_map)
+		change_player_pos_in_map(keycode, game);
+	else
+		change_player_pos(keycode, game);
+}
 
 void	check_input_touch(t_game *game)
 {
-		// if (game->ray->is_d_map)
-		// 	change_player_pos_in_map(keycode, game);
-		// else
-		// 	change_player_pos(keycode, game);
 	if (game->input[0])
-		change_player_pos(26 ,game);
-	else if (game->input[1])
-		change_player_pos(22, game);
-	else if (game->input[2])
-		change_player_pos(7, game);
-	else if (game->input[3])
-		change_player_pos(4, game);
-	else if (game->input[4])
+		move_by_render (26 ,game);
+	if (game->input[1])
+		move_by_render(22, game);
+	if (game->input[2])
+		move_by_render(7, game);
+	if (game->input[3])
+		move_by_render(4, game);
+	if (game->input[4])
 		change_angle(79, game);
-	else if (game->input[5])
+	if (game->input[5])
 		change_angle(80, game);
 }
 

@@ -1,11 +1,13 @@
 /*
 ===============ON IT====================
 
-# --> ameliorer la direction
+# --> sprite des murs
 
 =================I======================
 
 # --> leack sur la copy de check_map && ray de set_img
+
+# --> ameliorer la direction
 
 # --> corriger deplacement dans le mode isometrique
 
@@ -20,8 +22,6 @@
 # --> angle moi rond sur les murs
 
 =================III====================
-
-# --> sprite des murs
 
 # --> amination
 

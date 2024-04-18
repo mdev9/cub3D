@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/17 16:05:24 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:09:29 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	window_event(int value, void *game)
 void	change_player_pos_in_map(int keycode, t_game *game)
 {
 	if (keycode == 7 && game->map[(int)game->player->y]
-		[(int)(game->player->x + SPEED)] != '1')
-		game->player->x += SPEED;
+		[(int)(game->player->x + SPEED / 5)] != '1')
+		game->player->x += SPEED / 5;
 	else if (keycode == 4 && game->map[(int)game->player->y]
-		[(int)(game->player->x - SPEED)] != '1')
-		game->player->x -= SPEED;
-	else if (keycode == 22 && game->map[(int)(game->player->y + SPEED)]
+		[(int)(game->player->x - SPEED / 5)] != '1')
+		game->player->x -= SPEED / 5;
+	else if (keycode == 22 && game->map[(int)(game->player->y + SPEED / 5)]
 		[(int)game->player->x] != '1')
-		game->player->y += SPEED;
-	else if (keycode == 26 && game->map[(int)(game->player->y - SPEED)]
+		game->player->y += SPEED / 5;
+	else if (keycode == 26 && game->map[(int)(game->player->y - SPEED / 5)]
 		[(int)game->player->x] != '1')
-		game->player->y -= SPEED;
+		game->player->y -= SPEED / 5;
 	render_by_view(game);
 }
 
@@ -52,26 +52,24 @@ void	change_player_pos(int keycode, t_game *game)
 	else if (keycode == 22)
 	{
 		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
+		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
 	}
 	else if (keycode == 7)
 	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180) - SPEED * sin(game->player->vect->angle * PI / 180);
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180) - SPEED * -cos(game->player->vect->angle * PI / 180);
 		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
 	}
 	else
 	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180) - SPEED * sin(game->player->vect->angle * PI / 180);
+		speedx = SPEED * sin(game->player->vect->angle * PI / 180) - SPEED * -cos(game->player->vect->angle * PI / 180);
 		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
 	}
-	// printf ("speedx = %f\t speedy = %f\n", speedx, speedy);
 	if (speedy >= game->map_size || \
 		!game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] ||
 		game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] == '1')
 		return ;
 	game->player->x += speedx;
 	game->player->y += speedy;
-	// printf ("posx = %f\t posy = %f\n", game->player->x, game->player->y);
 	render_by_view(game);
 }
 
@@ -79,7 +77,8 @@ void	change_angle(int keycode, t_game *game)
 {
 	// printf ("angle = %d\n", game->player->vect->angle);
 	if (keycode == 79)
-		game->player->vect->angle = (game->player->vect->angle + ROTPSEED) % 360;
+		game->player->vect->angle = (game->player->vect->angle + ROTPSEED)
+			% 360;
 	else if (keycode == 80)
 		game->player->vect->angle -= ROTPSEED;
 	if (game->player->vect->angle < 0)
@@ -96,17 +95,17 @@ int	keydown_event(int keycode, void *game_data)
 	if (keycode == 41)
 		exit_game(game, 0);
 	else if (keycode == 79)
-		game->input[4] =  1;
+		game->input[4] = 1;
 	else if (keycode == 80)
-		game->input[5] =  1;
+		game->input[5] = 1;
 	else if (keycode == 26)
-		game->input[0] =  1;
+		game->input[0] = 1;
 	else if (keycode == 22)
-		game->input[1] =  1;
+		game->input[1] = 1;
 	else if (keycode == 7)
-		game->input[2] =  1;
+		game->input[2] = 1;
 	else if (keycode == 4)
-		game->input[3] =  1;
+		game->input[3] = 1;
 	else if (keycode == 16)
 	{
 		game->ray->is_d_map = !game->ray->is_d_map;

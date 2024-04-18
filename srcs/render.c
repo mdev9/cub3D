@@ -6,56 +6,23 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/17 16:52:17 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/18 18:17:52 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-void    put_fps(t_game *game, int need_free);
 
-void	render_by_view(t_game *game)
+void    correct_fish_eye(t_game *game, double ray_angle)
 {
-	mlx_clear_window(game->mlx, game->mlx_win);
-	if (game->ray->is_d_map)
-	{
-		put_fps(game, 0);
-		display_large_map(game, 0, 0);
-	}
-	else
-		render_map(game);
-}
-long long    get_now_time(void)
-{
-    struct timeval    tv;
+    double    radian;
+    double    ra;
 
-    gettimeofday(&tv, NULL);
-    return (tv.tv_sec * 1000000 + tv.tv_usec);
-}
-void    put_fps(t_game *game, int need_free)
-{
-    static long long    last_time = 0;
-    static int            change = 0;
-    long long            now;
-    float                fps;
-    static char            tmp[4];
-
-    if (need_free)
-        return ;
-    now = get_now_time();
-    fps = 1000000 / (now - last_time);
-    last_time = now;
-    if (change % 10 == 0)
-    {
-        tmp[0] = (int)fps / 100 + '0';
-        tmp[1] = (int)fps / 10 + '0';
-        tmp[2] = (int)fps % 10 + '0';
-        tmp[3] = '\0';
-        mlx_string_put(game->mlx, game->mlx_win, 10, 10, 0xFFFF0000, tmp);
-        change = 0;
-    }
-    else
-        mlx_string_put(game->mlx, game->mlx_win, 10, 10, 0xFFFF0000, tmp);
-    change++;
+    ra = ray_angle;
+    radian = (game->player->vect->angle - ra) * (PI / 180);
+    // while (radian < 0)
+	// 	radian += 2 * PI;
+	// radian = fmod(radian, 2 * PI);	
+	game->ray->dist *= cos(radian);
 }
 
 void	set_wall(t_game *game)
@@ -68,11 +35,32 @@ void	set_wall(t_game *game)
 	if (game->ray->wall_end >= HEIGHT)
 		game->ray->wall_end = HEIGHT - 1;
 }
-void	display_wall(t_game * game, int i, int *j)
+void	put_pixel_on_wall(t_game *game, int i, int *j, void *texture)
 {
+	double	px;
+	double	py;
+	
 	while (++*j < game->ray->wall_end)
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, *j, game->ray->color);
+	{
+		px = game->player->x + game->ray->dist * game->ray->rayx;
+		px -= (int)px;
+		py = ((*j - (HEIGHT - game->ray->wall_size) / 2) * (*game->texture->height / (HEIGHT / game->ray->dist)));
+		game->ray->color = mlx_get_image_pixel(game->mlx, texture,  px * *game->texture->width, py);
+		mlx_pixel_put(game->mlx, \
+			game->mlx_win, i, *j, game->ray->color);
+	}
+}
+
+void	display_wall(t_game *game, int i, int *j)
+{
+	if (game->ray->color == 0x55FF0000)
+		put_pixel_on_wall (game, i, j, game->texture->no);
+	else if (game->ray->color == 0x5500FF00)
+		put_pixel_on_wall (game, i, j, game->texture->so);
+	else if (game->ray->color == 0x550000FF)
+		put_pixel_on_wall (game, i, j, game->texture->ea);
+	else if (game->ray->color == 0x55FF00FF)
+		put_pixel_on_wall (game, i, j, game->texture->we);
 }
 
 void	display_img(t_game *game, int i, int *j)
@@ -87,6 +75,7 @@ void	display_img(t_game *game, int i, int *j)
 		mlx_pixel_put(game->mlx, \
 			game->mlx_win, i, *j, game->floor_color);
 }
+
 void	set_img(t_game *game)
 {
 	int		i;
@@ -95,10 +84,13 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->rayx = cos((game->player->vect->angle * PI / 180 - 0.8) + i / ((double)HEIGHT));
-		game->ray->rayy = sin((game->player->vect->angle * PI / 180 - 0.8) + i / ((double)HEIGHT));
-		// printf("rax %f\t ray %f\n", game->ray->rayx, game->ray->rayy);
+		game->ray->rayx = cos((game->player->vect->angle * PI / 180 - 0.8)
+				+ i / ((double)HEIGHT));
+		game->ray->rayy = sin((game->player->vect->angle * PI / 180 - 0.8)
+				+ i / ((double)HEIGHT));
 		set_raycaster(game);
+		// correct_fish_eye(game, (game->player->vect->angle)
+		// 		+ i );
 		set_wall(game);
 		j = -1;
 		display_img(game, i, &j);
@@ -107,6 +99,5 @@ void	set_img(t_game *game)
 
 void	render_map(t_game *game)
 {
-	// put_fps(game, 0);
 	set_img(game);
 }

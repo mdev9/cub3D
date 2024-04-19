@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/19 10:32:57 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/19 11:03:07 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 
 //todo put info in struct and add a recursion depth variable to throw an error if too deep to avoid segfaults with too big maps
 
-int	recursive_check(char **map, int map_size, t_pos *pos, int depth)
+int	recursive_check(char **map, int *check, int x, int y)
 {
-	if (pos->x < 0 || pos->y < 0 || pos->y >= map_size || !map[pos->y] || !map[pos->y][pos->x])
+	if (check[1] > 130000)
 		return (1);
-	if (!char_is_valid(map[pos->y][pos->x]))
+	if (x < 0 || y < 0 || y >= check[0] || !map[y] || !map[y][x])
 		return (1);
-	if (map[pos->y][pos->x] == '1')
+	if (!char_is_valid(map[y][x]))
+		return (1);
+	if (map[y][x] == '1')
 		return (0);
-	map[pos->y][pos->x] = '1';
-	return (recursive_check(map, map_size, pos->x + 1, pos->y)
-		|| recursive_check(map, map_size, pos->x - 1, pos->y)
-		|| recursive_check(map, map_size, pos->x, pos->y + 1)
-		|| recursive_check(map, map_size, pos->x, pos->y - 1));
+	map[y][x] = '1';
+	check[1]++;
+	return (recursive_check(map, check, x + 1, y)
+		|| recursive_check(map, check, x - 1, y)
+		|| recursive_check(map, check, x, y + 1)
+		|| recursive_check(map, check, x, y - 1));
 }
 
 int	make_map_copy(t_game *game, char **map_copy)
@@ -44,7 +47,7 @@ int	make_map_copy(t_game *game, char **map_copy)
 	return (0);
 }
 
-int	check_if_closed(t_game *game, t_pos *starting_pos)
+int	check_if_closed(t_game *game, int x, int y)
 {
 	char	**map_copy;
 
@@ -57,13 +60,16 @@ int	check_if_closed(t_game *game, t_pos *starting_pos)
 		free(map_copy);
 		exit_game(game, 0);
 	}
+	int check[2];
+	check[0] = game->map_size;
+	check[1] = 0;
 	//todo calculate map size more acurately to account for any empty lines at end of file
-	if (recursive_check(map_copy, game->map_size, pos->x, pos->y))
+	if (recursive_check(map_copy, check, x, y))
 	{
 		free(*map_copy);
 		free(map_copy);
 		exit_game(game,
-			"Error\nThe map contains an invalid character or isn't closed!\n");
+			"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
 	}
 	//check if there are any 0's left in the map, if it's the case, run check again
 	return (0);

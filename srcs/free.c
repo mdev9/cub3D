@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/10 14:21:45 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 11:14:38 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_texture(t_game *game, void *texture)
 	{
 		if (ft_strnstr(texture, ".png", ft_strlen(texture)))
 			free(texture);
-		else
+		else if (game->mlx)
 			mlx_destroy_image(game->mlx, texture);
 	}
 }

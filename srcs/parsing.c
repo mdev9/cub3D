@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/17 10:52:51 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:33:20 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,13 +164,19 @@ void	get_player_spawn_pos(t_game **game)
 
 void	check_if_map_valid(t_game *game)
 {
+	t_pos *player_pos;
 	int	i;
 
 	i = check_map_info(game);
 	resize_map(game, i);
 	check_map(game);
 	get_player_spawn_pos(&game);
-	check_if_closed(game, game->player->x, game->player->y);
+	player_pos = malloc(sizeof(t_pos));
+	if (!player_pos)
+		exit_game(game, 0);
+	player_pos->x = game->player->x;
+	player_pos->y = game->player->y;
+	check_if_closed(game, player_pos);
 }
 
 void	check_map_validity(t_game *game, char *map_path)

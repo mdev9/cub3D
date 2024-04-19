@@ -6,24 +6,11 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/18 18:17:52 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:07:20 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void    correct_fish_eye(t_game *game, double ray_angle)
-{
-    double    radian;
-    double    ra;
-
-    ra = ray_angle;
-    radian = (game->player->vect->angle - ra) * (PI / 180);
-    // while (radian < 0)
-	// 	radian += 2 * PI;
-	// radian = fmod(radian, 2 * PI);	
-	game->ray->dist *= cos(radian);
-}
 
 void	set_wall(t_game *game)
 {
@@ -35,17 +22,23 @@ void	set_wall(t_game *game)
 	if (game->ray->wall_end >= HEIGHT)
 		game->ray->wall_end = HEIGHT - 1;
 }
+
 void	put_pixel_on_wall(t_game *game, int i, int *j, void *texture)
 {
 	double	px;
 	double	py;
-	
+
+	if (game->ray->color == 0x55FF0000 || game->ray->color == 0x5500FF00)
+		px = game->player->x + game->ray->dist * game->ray->rayx;
+	else
+		px = game->player->y + game->ray->dist * game->ray->rayy;
+	px -= floor(px);
 	while (++*j < game->ray->wall_end)
 	{
-		px = game->player->x + game->ray->dist * game->ray->rayx;
-		px -= (int)px;
-		py = ((*j - (HEIGHT - game->ray->wall_size) / 2) * (*game->texture->height / (HEIGHT / game->ray->dist)));
-		game->ray->color = mlx_get_image_pixel(game->mlx, texture,  px * *game->texture->width, py);
+		py = ((*j - (HEIGHT - game->ray->wall_size) / 2)
+				* (*game->texture->height / (HEIGHT / game->ray->dist)));
+		game->ray->color = mlx_get_image_pixel(game->mlx, texture,
+				px * *game->texture->width, py);
 		mlx_pixel_put(game->mlx, \
 			game->mlx_win, i, *j, game->ray->color);
 	}
@@ -89,8 +82,6 @@ void	set_img(t_game *game)
 		game->ray->rayy = sin((game->player->vect->angle * PI / 180 - 0.8)
 				+ i / ((double)HEIGHT));
 		set_raycaster(game);
-		// correct_fish_eye(game, (game->player->vect->angle)
-		// 		+ i );
 		set_wall(game);
 		j = -1;
 		display_img(game, i, &j);

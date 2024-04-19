@@ -1,15 +1,11 @@
 /*
 ===============ON IT====================
 
-# --> sprite des murs
+# --> corriger deplacement dans le mode isometrique
 
 =================I======================
 
-# --> leack sur la copy de check_map && ray de set_img
-
-# --> ameliorer la direction
-
-# --> corriger deplacement dans le mode isometrique
+# --> leak sur la copy de check_map && ray de set_img
 
 # --> parsing a finir le parsing
 
@@ -19,8 +15,6 @@
 
 # --> minicarte
 
-# --> angle moi rond sur les murs
-
 =================III====================
 
 # --> amination
@@ -28,7 +22,6 @@
 # --> porte
 
 # --> optimisation
-
 
 */
 

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/18 17:09:29 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:09:59 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	change_player_pos(int keycode, t_game *game)
 	}
 	else if (keycode == 7)
 	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180) - SPEED * -cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
+		speedx = SPEED * cos(game->player->vect->angle * PI / 180) * game->ray->stepx;
+		speedy = SPEED * sin(game->player->vect->angle * PI / 180) * game->ray->stepy;
 	}
 	else
 	{
-		speedx = SPEED * sin(game->player->vect->angle * PI / 180) - SPEED * -cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
+		speedx = SPEED * -sin(game->player->vect->angle * PI / 180) * game->ray->stepy;
+		speedy = SPEED * -cos(game->player->vect->angle * PI / 180) * game->ray->stepy;
 	}
 	if (speedy >= game->map_size || \
 		!game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] ||
@@ -75,7 +75,6 @@ void	change_player_pos(int keycode, t_game *game)
 
 void	change_angle(int keycode, t_game *game)
 {
-	// printf ("angle = %d\n", game->player->vect->angle);
 	if (keycode == 79)
 		game->player->vect->angle = (game->player->vect->angle + ROTPSEED)
 			% 360;
@@ -91,7 +90,6 @@ int	keydown_event(int keycode, void *game_data)
 	t_game	*game;
 
 	game = (t_game *)game_data;
-	// ft_printf("%d\n", keycode);
 	if (keycode == 41)
 		exit_game(game, 0);
 	else if (keycode == 79)
@@ -120,20 +118,19 @@ int	keydown_eventup(int keycode, void *game_data)
 	t_game	*game;
 
 	game = (t_game *)game_data;
-	// ft_printf("%d\n", keycode);
 	if (keycode == 41)
 		exit_game(game, 0);
 	else if (keycode == 79)
-		game->input[4] =  0;
+		game->input[4] = 0;
 	else if (keycode == 80)
-		game->input[5] =  0;
+		game->input[5] = 0;
 	else if (keycode == 26)
-		game->input[0] =  0;
+		game->input[0] = 0;
 	else if (keycode == 22)
-		game->input[1] =  0;
+		game->input[1] = 0;
 	else if (keycode == 7)
-		game->input[2] =  0;
+		game->input[2] = 0;
 	else if (keycode == 4)
-		game->input[3] =  0;
+		game->input[3] = 0;
 	return (0);
 }

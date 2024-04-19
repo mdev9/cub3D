@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 09:55:01 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/17 15:45:00 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 10:08:43 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	mousedown_event(int keycode, void *game_data)
 	t_game	*game;
 
 	game = (t_game *)game_data;
-	// ft_printf("%d\n", keycode);
 	if (keycode == 1)
 		game->player->vect->use_mouse = !game->player->vect->use_mouse;
 	return (0);

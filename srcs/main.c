@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/18 11:21:23 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:05:05 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	game_loop(void *s_game)
 	if (game->player->vect->use_mouse && !game->ray->is_d_map)
 		change_by_mouse(game);
 	check_input_touch(game);
+	render_by_view(game);
 	return (0);
 }
 

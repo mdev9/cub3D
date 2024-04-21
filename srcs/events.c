@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/19 10:09:59 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/21 19:05:41 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,57 +22,6 @@ int	window_event(int value, void *game)
 	return (0);
 }
 
-void	change_player_pos_in_map(int keycode, t_game *game)
-{
-	if (keycode == 7 && game->map[(int)game->player->y]
-		[(int)(game->player->x + SPEED / 5)] != '1')
-		game->player->x += SPEED / 5;
-	else if (keycode == 4 && game->map[(int)game->player->y]
-		[(int)(game->player->x - SPEED / 5)] != '1')
-		game->player->x -= SPEED / 5;
-	else if (keycode == 22 && game->map[(int)(game->player->y + SPEED / 5)]
-		[(int)game->player->x] != '1')
-		game->player->y += SPEED / 5;
-	else if (keycode == 26 && game->map[(int)(game->player->y - SPEED / 5)]
-		[(int)game->player->x] != '1')
-		game->player->y -= SPEED / 5;
-	render_by_view(game);
-}
-
-void	change_player_pos(int keycode, t_game *game)
-{
-	double	speedx;
-	double	speedy;
-
-	if (keycode == 26)
-	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
-	}
-	else if (keycode == 22)
-	{
-		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
-	}
-	else if (keycode == 7)
-	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180) * game->ray->stepx;
-		speedy = SPEED * sin(game->player->vect->angle * PI / 180) * game->ray->stepy;
-	}
-	else
-	{
-		speedx = SPEED * -sin(game->player->vect->angle * PI / 180) * game->ray->stepy;
-		speedy = SPEED * -cos(game->player->vect->angle * PI / 180) * game->ray->stepy;
-	}
-	if (speedy >= game->map_size || \
-		!game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] ||
-		game->map[(int)(game->player->y + speedy)][(int)(game->player->x + speedx)] == '1')
-		return ;
-	game->player->x += speedx;
-	game->player->y += speedy;
-	render_by_view(game);
-}
-
 void	change_angle(int keycode, t_game *game)
 {
 	if (keycode == 79)
@@ -82,7 +31,6 @@ void	change_angle(int keycode, t_game *game)
 		game->player->vect->angle -= ROTPSEED;
 	if (game->player->vect->angle < 0)
 		game->player->vect->angle = 360 + game->player->vect->angle;
-	render_by_view(game);
 }
 
 int	keydown_event(int keycode, void *game_data)

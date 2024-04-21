@@ -6,15 +6,11 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/18 11:00:48 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:20:21 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-	// 	game->ray->color = 0xFFFF0000;n
-	// 	game->ray->color = 0xFF0000FF;s
-	// 	game->ray->color = 0xFF00FF00;e
-	// 	game->ray->color = 0xFFFF00FF;w
 
 void	set_wall_color(t_game *game, int side)
 {

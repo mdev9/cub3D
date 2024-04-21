@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:15:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/19 10:01:50 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:27:21 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # define FOV 90
 # define STEP 21
 # define PI 3.141592653589793
-# define SPEED 0.1
+# define SPEED 0.15
 # define QUALITY 150
-# define ROTPSEED 10
+# define ROTPSEED 5
 
 typedef struct s_raycaster
 {

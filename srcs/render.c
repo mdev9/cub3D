@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/22 13:57:49 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:01:58 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->rayx = -cos(((game->player->vect->angle + 90) * PI / 180) + 0.8
+		game->ray->rayx = -cos(((game->player->vect->angle + 90) * PI / 180) + 0.8 
 				+ i / ((double)HEIGHT - 1));
 		game->ray->rayy = -sin(((game->player->vect->angle + 90) * PI / 180) + 0.8
 				+ i / ((double)HEIGHT - 1));

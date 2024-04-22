@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/19 15:20:21 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:15:55 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,8 @@ void	raysendmapp(t_game *game)
 	set_wall_color(game, side);
 }
 
-void	set_raycaster(t_game *game)
+void	set_delta(t_game *game)
 {
-	game->ray->mapx = (int)(game->player->x);
-	game->ray->mapy = (int)(game->player->y);
-	if (game->ray->rayx == 0.00000)
-		game->ray->deltax = 1e30;
-	else
-		game->ray->deltax = fabs(1 / game->ray->rayx);
-	if (game->ray->rayy == 0.0000000)
-		game->ray->deltay = 1e30;
-	else
-		game->ray->deltay = fabs(1 / game->ray->rayy);
 	if (game->ray->rayx < 0)
 	{
 		game->ray->stepx = -1;
@@ -94,5 +84,20 @@ void	set_raycaster(t_game *game)
 		game->ray->sidedisty = ((double)game->ray->mapy + 1.0 - game->player->y)
 			* game->ray->deltay;
 	}
+}
+
+void	set_raycaster(t_game *game)
+{
+	game->ray->mapx = (int)(game->player->x);
+	game->ray->mapy = (int)(game->player->y);
+	if (game->ray->rayx == 0.00000)
+		game->ray->deltax = 1e30;
+	else
+		game->ray->deltax = fabs(1 / game->ray->rayx);
+	if (game->ray->rayy == 0.0000000)
+		game->ray->deltay = 1e30;
+	else
+		game->ray->deltay = fabs(1 / game->ray->rayy);
+	set_delta(game);
 	raysendmapp(game);
 }

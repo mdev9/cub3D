@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/19 14:05:05 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:05:56 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	load_textures(t_game *game)
 	load_texture(game, &game->texture->we);
 	load_texture(game, &game->texture->ea);
 }
+
 void	move_by_render(int keycode, t_game *game)
 {
 	if (game->ray->is_d_map)
@@ -49,7 +50,7 @@ void	move_by_render(int keycode, t_game *game)
 void	check_input_touch(t_game *game)
 {
 	if (game->input[0])
-		move_by_render (26 ,game);
+		move_by_render (26, game);
 	if (game->input[1])
 		move_by_render(22, game);
 	if (game->input[2])

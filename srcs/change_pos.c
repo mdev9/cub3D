@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:03:07 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/21 19:30:00 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:41:58 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,26 @@ void	change_player_pos(int keycode, t_game *game)
 {
 	double	speedx;
 	double	speedy;
-	
-	if (keycode == 26)
+
+	if (keycode == 7)
 	{
-		speedx = SPEED * cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * sin(game->player->vect->angle * PI / 180);
-		printf("dirx =%f\t diry =%f\n", speedx, speedy);
+		speedx = SPEED * cos((game->player->vect->angle + 90) * PI / 180);
+		speedy = SPEED * sin((game->player->vect->angle + 90) * PI / 180);
 	}
-	else if (keycode == 22)
+	else if (keycode == 4)
 	{
-		speedx = SPEED * -cos(game->player->vect->angle * PI / 180);
-		speedy = SPEED * -sin(game->player->vect->angle * PI / 180);
-		printf("dirx =%f\t diry =%f\n", speedx, speedy);
+		speedx = SPEED * -cos((game->player->vect->angle + 90) * PI / 180);
+		speedy = SPEED * -sin((game->player->vect->angle + 90) * PI / 180);
 	}
-	else if (keycode == 7)
+	else if (keycode == 26)
 	{
-		speedx = SPEED * sin(game->player->vect->angle * PI / 180);
-		speedy = SPEED * cos(game->player->vect->angle * PI / 180);
-		printf("dirx =%f\t diry =%f\n", speedx, speedy);
+		speedx = SPEED * sin((game->player->vect->angle + 90) * PI / 180);
+		speedy = SPEED * -cos((game->player->vect->angle + 90) * PI / 180);
 	}
 	else
 	{
-		speedx = SPEED * -sin(game->player->vect->angle * PI / 180);
-		speedy = SPEED * -cos(game->player->vect->angle * PI / 180);
-		printf("dirx =%f\t diry =%f\n", speedx, speedy);
+		speedx = SPEED * -sin((game->player->vect->angle + 90) * PI / 180);
+		speedy = SPEED * cos((game->player->vect->angle + 90) * PI / 180);
 	}
 	is_wall_in_way(game, speedx, speedy);
 }

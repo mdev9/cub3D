@@ -1,7 +1,6 @@
 /*
 ===============ON IT====================
 
-# --> corriger deplacement dans le mode isometrique
 
 =================I======================
 
@@ -11,7 +10,7 @@
 
 # --> corriger le fish eye
 
-# --> correct collision
+# -->propre management d erreur pour le chemin des fichiers
 
 =================II=====================
 
@@ -22,8 +21,6 @@
 # --> amination
 
 # --> porte
-
-# --> optimisation
 
 */
 

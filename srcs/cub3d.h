@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/21 19:05:37 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:04:31 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_mouse(t_game *game);
 //CHECK//
 void	check_map_validity(t_game *game, char *map_path);
 void	check_input_validity(int ac, char **av);
+void	check_input_touch(t_game *game);
 
 int		check_color_info(t_game *game, char *line, char identifier);
 int		check_if_closed(t_game *game, int x, int y);
@@ -95,16 +96,17 @@ int		keydown_eventup(int keycode, void *game_data);
 
 //RENDER//
 void	render_by_view(t_game *game);
-void	render_map(t_game *game);
 
 int		display_large_map(t_game *game, int x, int y);
 
 //SET && INIT//
 void	set_raycaster(t_game *game);
+void	load_textures(t_game *game);
 void	set_wall(t_game *game);
 void	set_img(t_game *game);
 
 int		load_map_data(t_game *game, int fd);
+int		init_game(t_game *game);
 
 //EXIT && FREE//
 void	exit_game(t_game *game, char *error_message);

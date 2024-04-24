@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:03:07 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/22 10:41:58 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:51:47 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,30 @@ void	is_wall_in_way(t_game *game, double speedx, double speedy)
 
 void	change_player_pos(int keycode, t_game *game)
 {
-	double	speedx;
-	double	speedy;
+	double	spdx;
+	double	spdy;
 
-	if (keycode == 7)
+	if (keycode == 4)
 	{
-		speedx = SPEED * cos((game->player->vect->angle + 90) * PI / 180);
-		speedy = SPEED * sin((game->player->vect->angle + 90) * PI / 180);
+		spdx = SPEED * cos((game->player->vect->angle + 90) * PI / 180) / 1.5;
+		spdy = SPEED * sin((game->player->vect->angle + 90) * PI / 180) / 1.5;
 	}
-	else if (keycode == 4)
+	else if (keycode == 7)
 	{
-		speedx = SPEED * -cos((game->player->vect->angle + 90) * PI / 180);
-		speedy = SPEED * -sin((game->player->vect->angle + 90) * PI / 180);
+		spdx = SPEED * -cos((game->player->vect->angle + 90) * PI / 180) / 1.5;
+		spdy = SPEED * -sin((game->player->vect->angle + 90) * PI / 180) / 1.5;
 	}
-	else if (keycode == 26)
+	else if (keycode == 22)
 	{
-		speedx = SPEED * sin((game->player->vect->angle + 90) * PI / 180);
-		speedy = SPEED * -cos((game->player->vect->angle + 90) * PI / 180);
+		spdx = SPEED * sin((game->player->vect->angle + 90) * PI / 180);
+		spdy = SPEED * -cos((game->player->vect->angle + 90) * PI / 180);
 	}
 	else
 	{
-		speedx = SPEED * -sin((game->player->vect->angle + 90) * PI / 180);
-		speedy = SPEED * cos((game->player->vect->angle + 90) * PI / 180);
+		spdx = SPEED * -sin((game->player->vect->angle + 90) * PI / 180);
+		spdy = SPEED * cos((game->player->vect->angle + 90) * PI / 180);
 	}
-	is_wall_in_way(game, speedx, speedy);
+	is_wall_in_way(game, spdx, spdy);
 }
 
 void	change_player_pos_in_map(int keycode, t_game *game)

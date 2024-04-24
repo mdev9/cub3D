@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/22 17:01:58 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 12:57:22 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	display_wall(t_game *game, int i, int *j)
 	else if (game->ray->color == 0x5500FF00)
 		put_pixel_on_wall (game, i, j, game->texture->so);
 	else if (game->ray->color == 0x550000FF)
-		put_pixel_on_wall (game, i, j, game->texture->ea);
-	else if (game->ray->color == 0x55FF00FF)
 		put_pixel_on_wall (game, i, j, game->texture->we);
+	else if (game->ray->color == 0x55FF00FF)
+		put_pixel_on_wall (game, i, j, game->texture->ea);
 }
 
 void	display_img(t_game *game, int i, int *j)
@@ -77,18 +77,13 @@ void	set_img(t_game *game)
 	i = -1;
 	while (++i < WIDTH)
 	{
-		game->ray->rayx = -cos(((game->player->vect->angle + 90) * PI / 180) + 0.8 
-				+ i / ((double)HEIGHT - 1));
-		game->ray->rayy = -sin(((game->player->vect->angle + 90) * PI / 180) + 0.8
-				+ i / ((double)HEIGHT - 1));
+		game->ray->rayx = cos(((game->player->vect->angle + 90) * PI / 180)
+				+ 0.8 + i / ((double)HEIGHT - 1));
+		game->ray->rayy = sin(((game->player->vect->angle + 90) * PI / 180)
+				+ 0.8 + i / ((double)HEIGHT - 1));
 		set_raycaster(game);
 		set_wall(game);
 		j = -1;
 		display_img(game, i, &j);
 	}
-}
-
-void	render_map(t_game *game)
-{
-	set_img(game);
 }

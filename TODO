@@ -4,13 +4,15 @@
 
 =================I======================
 
-# --> leak sur la copy de check_map && ray de set_img
+# --> leak sur la copy de check_map
 
-# --> parsing a finir le parsing
+# --> parsing a finir
 
 # --> corriger le fish eye
 
 # -->propre management d erreur pour le chemin des fichiers
+
+# -->mettre une auteur et largeur pour chaque image
 
 =================II=====================
 

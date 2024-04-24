@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/24 12:57:22 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:16:34 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	put_pixel_on_wall(t_game *game, int i, int *j, void *texture)
 	else
 		px = game->player->y + game->ray->dist * game->ray->rayy;
 	px -= floor(px);
+	if (game->ray->color == 0x55FF0000 || game->ray->color == 0x55FF00FF)
+		px = 1.0 - px;
 	while (++*j < game->ray->wall_end)
 	{
 		py = ((*j - (HEIGHT - game->ray->wall_size) / 2)

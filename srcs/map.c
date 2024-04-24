@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:41:56 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/23 13:56:57 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:57:54 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	resize_map(t_game *game, int new_size)
 	ft_memmove(game->map, game->map + new_size, (game->map_size - new_size)
 		* sizeof(char *));
 	game->map_size -= new_size;
+	game->map[game->map_size] = 0;
 }

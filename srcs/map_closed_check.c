@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/24 15:58:03 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:07:01 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_if_closed(t_game *game, int x, int y)
 	i = 0;
 	j = 0;
 	//check if there are any 0's left in the map, if it's the case, run check again
-	while (map_copy[i][j])
+	while (i < game->map_size)
 	{
 		if (map_copy[i][j] == 0)
 		{

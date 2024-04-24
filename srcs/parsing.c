@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/22 14:01:35 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:12:29 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,14 @@ void	check_map(t_game *game)
 		while (is_whitespace(game->map[i][j]))
 			j++;
 		if (!char_is_valid(game->map[i][j]))
-			exit_game(game, "Error\nInvalid character found in map!\n");
-		if (game->map[i][j] != '1' || game->map[i][ft_strlen(game->map[i])
-			- 2] != '1')
-		{
+			if (game->map[i][j] && i != game->map_size - 1)
+				exit_game(game, "Error\nInvalid character found in map!\n");
+		if ((game->map[i][j] && game->map[i][j] != '1')
+			|| (game->map[i][ft_strlen(game->map[i]) - 2] && game->map[i][ft_strlen(game->map[i]) - 2] != '1'))
 			exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
-		}
 		i++;
 	}
-	if (!line_is_only_char(game->map[i - 1], '1'))
+	if (!line_is_only_char(game->map[i - 1], '1')) //fix this
 		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
 }
 

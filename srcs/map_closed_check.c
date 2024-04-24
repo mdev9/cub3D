@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_closed_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/19 11:03:07 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:23:45 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ int	check_if_closed(t_game *game, int x, int y)
 		exit_game(game, 0);
 	if (make_map_copy(game, map_copy))
 	{
-		free(*map_copy);
-		free(map_copy);
+		free_map(game, map_copy);
 		exit_game(game, 0);
 	}
 	int check[2];
@@ -66,11 +65,11 @@ int	check_if_closed(t_game *game, int x, int y)
 	//todo calculate map size more acurately to account for any empty lines at end of file
 	if (recursive_check(map_copy, check, x, y))
 	{
-		free(*map_copy);
-		free(map_copy);
+		free_map(game, map_copy);
 		exit_game(game,
 			"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
 	}
+	free_map(game, map_copy);
 	//check if there are any 0's left in the map, if it's the case, run check again
 	return (0);
 }

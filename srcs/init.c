@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:59:36 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/24 13:01:05 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:08:08 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	init_ray(t_game *game)
 	game->ray = ft_calloc(sizeof(t_raycaster), 1);
 	if (!game->ray)
 		exit_game(game, 0);
-	game->ray->planex = 0;
-	game->ray->planey = 0.66;
 }
 
 void	init_input(t_game *game)

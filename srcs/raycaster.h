@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:15:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/22 15:17:17 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 13:08:15 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef struct s_raycaster
 	double	rayy;
 	double	deltax;
 	double	deltay;
-	double	planex;
-	double	planey;
 	int		stepx;
 	int		stepy;
 	int		mapx;

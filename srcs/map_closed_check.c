@@ -6,13 +6,11 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/24 13:23:45 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:58:03 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//todo put info in struct and add a recursion depth variable to throw an error if too deep to avoid segfaults with too big maps
 
 int	recursive_check(char **map, int *check, int x, int y)
 {
@@ -62,14 +60,28 @@ int	check_if_closed(t_game *game, int x, int y)
 	int check[2];
 	check[0] = game->map_size;
 	check[1] = 0;
-	//todo calculate map size more acurately to account for any empty lines at end of file
-	if (recursive_check(map_copy, check, x, y))
+	int i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	//check if there are any 0's left in the map, if it's the case, run check again
+	while (map_copy[i][j])
 	{
-		free_map(game, map_copy);
-		exit_game(game,
-			"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
+		if (map_copy[i][j] == 0)
+		{
+			if (recursive_check(map_copy, check, x, y))
+			{
+				free_map(game, map_copy);
+				exit_game(game, \
+			  "Error\nThe map contains an invalid character, isn't closed or is too big!\n");
+			}
+			check[1] = 0;
+			j++;
+		}
+		i++;
 	}
 	free_map(game, map_copy);
-	//check if there are any 0's left in the map, if it's the case, run check again
+	//todo calculate map size more acurately to account for any empty lines at end of file
 	return (0);
 }

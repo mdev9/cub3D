@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 14:22:15 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:28:55 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	change_player_pos(int keycode, t_game *game);
 void	change_angle(int keycode, t_game *game);
 void	resize_map(t_game *game, int new_size);
 void	put_fps(t_game *game, int need_free);
+void	set_minimap(t_game *game);
 
 int		open_file(char *map_path);
 int		rgb(int r, int g, int b);

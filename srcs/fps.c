@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:04:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/24 12:57:10 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:10:01 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	put_fps(t_game *game, int need_free)
 void	render_by_view(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->mlx_win);
-	if (game->ray->is_d_map)
-		display_large_map(game, 0, 0);
-	else
-		set_img(game);
+	set_minimap(game);
+	//display_large_map(game, 0, 0);
+	set_img(game);
 }

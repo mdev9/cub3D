@@ -18,6 +18,7 @@ SRCS_RAW =	main.c				\
 			change_pos.c		\
 			map_checks.c		\
 			map_spawn_check.c	\
+			minimap.c			\
 			init.c
 
 OBJS_DIR = objs/

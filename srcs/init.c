@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:59:36 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/24 13:08:08 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:02:18 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init_game(t_game *game)
 	load_textures(game);
 	game->mlx_win = mlx_new_window(game->mlx, WIDTH,
 			HEIGHT, "cub3D");
+	game->minimap = 1;
 	mlx_mouse_hide();
 	init_ray(game);
 	init_mouse(game);

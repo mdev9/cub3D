@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 13:35:32 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:47:42 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_texture_info(t_game *game, char *line, char *identifier)
 		if (!ft_strlen(line + 3))
 		{
 			ft_printf("Error\nNo path specified after %s identifier!\n",
-						identifier);
+				identifier);
 			exit_game(game, 0);
 		}
 		put_path_in_struct(game, line, identifier);
@@ -51,7 +51,7 @@ void	check_info(t_game *game, char *line)
 	{
 		if (line_is_only_char(line, '1'))
 			exit_game(game, "Error\nMissing texture or color info in map!\n");
-		ft_printf("Error\nInvalid line in map:\n%s", line); //remove line?
+		ft_printf("Error\nInvalid line in map:\n%s", line);
 		exit_game(game, 0);
 	}
 }
@@ -67,9 +67,10 @@ void	check_texture_file(t_game *game, char *texture)
 			printf("Error\nFile '%s' does not exist.\n", texture);
 		else if (errno == EACCES)
 			printf("Error\nNo permission to read file '%s'.\n",
-					texture);
+				texture);
 		else
-			printf("Error\nCan't open file '%s': %s\n", texture, strerror(errno));
+			printf("Error\nCan't open file '%s': %s\n",
+				texture, strerror(errno));
 	}
 	else
 	{
@@ -87,69 +88,6 @@ void	check_texture_files(t_game *game)
 	check_texture_file(game, game->texture->we);
 }
 
-int	check_map_info(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	game->texture = ft_calloc(1, sizeof(t_texture));
-	if (!game->texture)
-		exit_game(game, 0);
-	while (i < game->map_size && j < 6)
-	{
-		while (line_is_empty(game->map[i]))
-			i++;
-		check_info(game, game->map[i]);
-		i++;
-		j++;
-	}
-	check_texture_files(game);
-	while (line_is_empty(game->map[i]))
-		i++;
-	return (i);
-}
-
-void	check_map(t_game *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (is_whitespace(game->map[i][j]))
-		j++;
-	if (!char_is_valid(game->map[i][j]))
-		exit_game(game, "Error\nInvalid character found in map!\n");
-	if (!line_is_only_char(game->map[i], '1'))
-		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
-	i++;
-	while (i < game->map_size)
-	{
-		j = 0;
-		while (is_whitespace(game->map[i][j]))
-			j++;
-		if (!char_is_valid(game->map[i][j]))
-			if (game->map[i][j] && i != game->map_size - 1)
-				exit_game(game, "Error\nInvalid character found in map!\n");
-		if ((game->map[i][j] && game->map[i][j] != '1'))
-			//|| (game->map[i][ft_strlen(game->map[i]) - 2]
-	//				&& game->map[i][ft_strlen(game->map[i]) - 2] != '1'))
-			exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
-		i++;
-	}
-	if (!line_is_only_char(game->map[i - 1], '1')) //fix this
-		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
-}
-
-int	char_is_spawn_pos(int c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	return (0);
-}
-
 void	get_orientation(t_game **game, int orientation)
 {
 	if (orientation == 'N')
@@ -160,56 +98,4 @@ void	get_orientation(t_game **game, int orientation)
 		(*game)->player->vect->angle = 180;
 	else if (orientation == 'E')
 		(*game)->player->vect->angle = 0;
-}
-
-void	get_player_spawn_pos(t_game **game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	(*game)->player = ft_calloc(1, sizeof(t_player));
-	if (!(*game)->player)
-		exit_game((*game), 0);
-	while (i < (*game)->map_size)
-	{
-		j = 0;
-		while ((*game)->map[i][j])
-		{
-			if (char_is_spawn_pos((*game)->map[i][j]))
-			{
-				(*game)->player->x = j + 0.5;
-				(*game)->player->y = i + 0.5;
-				(*game)->player->vect = ft_calloc(1, sizeof(t_vect));
-				if (!(*game)->player->vect)
-					exit_game(*game, 0);
-				get_orientation(game, (*game)->map[i][j]);
-				break ;
-			}
-			j++;
-		}
-		i++;
-	}
-	if (!(*game)->player->x || !(*game)->player->y)
-		exit_game(*game, "Error\nNo player spawning position!");
-}
-
-void	check_if_map_valid(t_game *game)
-{
-	int	i;
-
-	i = check_map_info(game);
-	resize_map(game, i);
-	check_map(game);
-	get_player_spawn_pos(&game);
-	check_if_closed(game, game->player->x, game->player->y);
-}
-
-void	check_map_validity(t_game *game, char *map_path)
-{
-	int	map_fd;
-
-	map_fd = open_file(map_path);
-	load_map_data(game, map_fd);
-	check_if_map_valid(game);
 }

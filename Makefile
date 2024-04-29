@@ -16,6 +16,8 @@ SRCS_RAW =	main.c				\
 			mouse.c				\
 			fps.c				\
 			change_pos.c		\
+			map_checks.c		\
+			map_spawn_check.c	\
 			init.c
 
 OBJS_DIR = objs/

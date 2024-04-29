@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/24 17:07:01 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:03:07 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,30 @@ int	make_map_copy(t_game *game, char **map_copy)
 	return (0);
 }
 
+void	flood_fill_map(t_game *game, char **map_copy, int check[4])
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < game->map_size)
+	{
+		if (map_copy[i][j] == 0)
+		{
+			if (recursive_check(map_copy, check, check[2], check[3]))
+			{
+				free_map(game, map_copy);
+				exit_game(game, \
+"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
+			}
+			check[1] = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
 int	check_if_closed(t_game *game, int x, int y)
 {
 	char	**map_copy;
@@ -57,31 +81,7 @@ int	check_if_closed(t_game *game, int x, int y)
 		free_map(game, map_copy);
 		exit_game(game, 0);
 	}
-	int check[2];
-	check[0] = game->map_size;
-	check[1] = 0;
-	int i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	//check if there are any 0's left in the map, if it's the case, run check again
-	while (i < game->map_size)
-	{
-		if (map_copy[i][j] == 0)
-		{
-			if (recursive_check(map_copy, check, x, y))
-			{
-				free_map(game, map_copy);
-				exit_game(game, \
-			  "Error\nThe map contains an invalid character, isn't closed or is too big!\n");
-			}
-			check[1] = 0;
-			j++;
-		}
-		i++;
-	}
+	flood_fill_map(game, map_copy, (int [4]){game->map_size, 0, x, y});
 	free_map(game, map_copy);
-	//todo calculate map size more acurately to account for any empty lines at end of file
 	return (0);
 }

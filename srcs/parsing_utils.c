@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:44:54 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/23 13:59:11 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:43:07 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	char_is_valid(int c)
 {
-	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == '\n')
+	if (c == '0' || c == '1' || c == 'N' || c == 'S'
+		|| c == 'E' || c == 'W' || c == '\n')
 		return (1);
 	return (0);
 }
@@ -52,4 +53,11 @@ int	line_is_only_char(char *line, int c)
 		i++;
 	}
 	return (1);
+}
+
+int	char_is_spawn_pos(int c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
 }

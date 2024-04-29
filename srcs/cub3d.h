@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 13:21:39 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:22:15 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,13 @@ int		check_color_info(t_game *game, char *line, char identifier);
 int		check_if_closed(t_game *game, int x, int y);
 int		line_is_only_char(char *line, int c);
 int		line_is_empty(char *line);
+int		char_is_spawn_pos(int c);
 int		char_is_valid(int c);
 int		is_whitespace(int c);
+
+int		check_texture_info(t_game *game, char *line, char *identifier);
+void	check_info(t_game *game, char *line);
+void	check_texture_files(t_game *game);
 
 //EVENT//
 int		mousedown_event(int keycode, void *game_data);
@@ -97,8 +102,8 @@ int		window_event(int value, void *game);
 int		keydown_eventup(int keycode, void *game_data);
 
 //RENDER//
-void	render_by_view(t_game *game);
 
+void	render_by_view(t_game *game);
 int		display_large_map(t_game *game, int x, int y);
 
 //SET && INIT//
@@ -115,6 +120,9 @@ void	exit_game(t_game *game, char *error_message);
 void	free_map(t_game *game, char **map);
 
 //OTHER//
+void	get_orientation(t_game **game, int orientation);
+void	get_player_spawn_pos(t_game **game);
+
 void	put_path_in_struct(t_game *game, char *line, char *identifier);
 void	change_player_pos_in_map(int keycode, t_game *game);
 void	change_player_pos(int keycode, t_game *game);

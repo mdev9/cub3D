@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/24 13:04:31 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:21:39 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdbool.h>
 # include <math.h>
 # include <sys/time.h>
+# include <errno.h>
+# include <string.h>
 
 # define N -1
 # define S 1

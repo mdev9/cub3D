@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/24 18:12:29 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:35:32 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_texture_info(t_game *game, char *line, char *identifier)
 		if (!ft_strlen(line + 3))
 		{
 			ft_printf("Error\nNo path specified after %s identifier!\n",
-				identifier);
+						identifier);
 			exit_game(game, 0);
 		}
 		put_path_in_struct(game, line, identifier);
@@ -56,6 +56,37 @@ void	check_info(t_game *game, char *line)
 	}
 }
 
+void	check_texture_file(t_game *game, char *texture)
+{
+	int	fd;
+
+	fd = open(texture, O_RDONLY);
+	if (fd == -1)
+	{
+		if (errno == ENOENT)
+			printf("Error\nFile '%s' does not exist.\n", texture);
+		else if (errno == EACCES)
+			printf("Error\nNo permission to read file '%s'.\n",
+					texture);
+		else
+			printf("Error\nCan't open file '%s': %s\n", texture, strerror(errno));
+	}
+	else
+	{
+		close(fd);
+		return ;
+	}
+	exit_game(game, 0);
+}
+
+void	check_texture_files(t_game *game)
+{
+	check_texture_file(game, game->texture->ea);
+	check_texture_file(game, game->texture->no);
+	check_texture_file(game, game->texture->so);
+	check_texture_file(game, game->texture->we);
+}
+
 int	check_map_info(t_game *game)
 {
 	int	i;
@@ -74,6 +105,7 @@ int	check_map_info(t_game *game)
 		i++;
 		j++;
 	}
+	check_texture_files(game);
 	while (line_is_empty(game->map[i]))
 		i++;
 	return (i);
@@ -101,8 +133,9 @@ void	check_map(t_game *game)
 		if (!char_is_valid(game->map[i][j]))
 			if (game->map[i][j] && i != game->map_size - 1)
 				exit_game(game, "Error\nInvalid character found in map!\n");
-		if ((game->map[i][j] && game->map[i][j] != '1')
-			|| (game->map[i][ft_strlen(game->map[i]) - 2] && game->map[i][ft_strlen(game->map[i]) - 2] != '1'))
+		if ((game->map[i][j] && game->map[i][j] != '1'))
+			//|| (game->map[i][ft_strlen(game->map[i]) - 2]
+	//				&& game->map[i][ft_strlen(game->map[i]) - 2] != '1'))
 			exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
 		i++;
 	}

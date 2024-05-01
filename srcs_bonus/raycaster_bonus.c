@@ -6,20 +6,20 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 15:36:05 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:32:54 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	set_wall_color(t_game *game)
+void	set_wall_color(t_game *game, int side)
 {
 	if (game->map[game->ray->mapy][game->ray->mapx] == 'D')
 	{
 		game->ray->color = 0x00000000;
 		return ;
 	}
-	if (game->ray->side)
+	if (side)
 	{
 		if (game->ray->rayy > 0 && game->ray->rayy < PI)
 			game->ray->color = 0x55FF0000;
@@ -59,7 +59,7 @@ void	raysendmapp(t_game *game)
 		game->ray->dist = game->ray->sidedistx - game->ray->deltax;
 	else
 		game->ray->dist = game->ray->sidedisty - game->ray->deltay;
-	set_wall_color(game);
+	set_wall_color(game, game->ray->side);
 }
 
 void	set_delta(t_game *game)

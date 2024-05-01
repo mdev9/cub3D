@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:15:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 15:33:28 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:18:54 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RAYCASTER_BONUS_H
 
 # define FOV 90
-# define STEP 21
 # define PI 3.141592653589793
 # define SPEED 0.15
 # define QUALITY 150

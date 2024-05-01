@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 11:56:57 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:42:19 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ void	put_pixel_on_wall(t_game *game, int i, int *j, void *texture)
 	double	px;
 	double	py;
 
-	if (game->ray->color == 0x55FF0000 || game->ray->color == 0x5500FF00)
+	if ((game->ray->color == 0x55FF0000 || game->ray->color == 0x5500FF00)
+		|| (game->ray->color == 0x00000000 && game->ray->side))
 		px = game->player->x + game->ray->dist * game->ray->rayx;
 	else
 		px = game->player->y + game->ray->dist * game->ray->rayy;
 	px -= floor(px);
-	if (game->ray->color == 0x55FF0000 || game->ray->color == 0x55FF00FF)
+	if ((game->ray->color == 0x55FF0000 || game->ray->color == 0x55FF00FF)
+		|| (game->ray->color == 0x00000000 && game->ray->side))
 		px = 1.0 - px;
 	while (++*j < game->ray->wall_end)
 	{
@@ -57,6 +59,8 @@ void	display_wall(t_game *game, int i, int *j)
 		put_pixel_on_wall (game, i, j, game->texture->we);
 	else if (game->ray->color == 0x55FF00FF)
 		put_pixel_on_wall (game, i, j, game->texture->ea);
+	else if (game->ray->color == 0x00000000)
+		put_pixel_on_wall(game, i, j, game->texture->door);
 }
 
 void	display_img(t_game *game, int i, int *j)

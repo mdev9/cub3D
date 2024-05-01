@@ -6,15 +6,20 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:04 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:36:05 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	set_wall_color(t_game *game, int side)
+void	set_wall_color(t_game *game)
 {
-	if (side)
+	if (game->map[game->ray->mapy][game->ray->mapx] == 'D')
+	{
+		game->ray->color = 0x00000000;
+		return ;
+	}
+	if (game->ray->side)
 	{
 		if (game->ray->rayy > 0 && game->ray->rayy < PI)
 			game->ray->color = 0x55FF0000;
@@ -32,30 +37,29 @@ void	set_wall_color(t_game *game, int side)
 
 void	raysendmapp(t_game *game)
 {
-	int	side;
-
 	while (1)
 	{
 		if (game->ray->sidedistx < game->ray->sidedisty)
 		{
 			game->ray->sidedistx = game->ray->sidedistx + game->ray->deltax;
 			game->ray->mapx += game->ray->stepx;
-			side = 0;
+			game->ray->side = 0;
 		}
 		else
 		{
 			game->ray->sidedisty = game->ray->sidedisty + game->ray->deltay;
 			game->ray->mapy += game->ray->stepy;
-			side = 1;
+			game->ray->side = 1;
 		}
-		if (game->map[game->ray->mapy][game->ray->mapx] == '1')
+		if (game->map[game->ray->mapy][game->ray->mapx] == '1'
+			|| game->map[game->ray->mapy][game->ray->mapx] == 'D')
 			break ;
 	}
-	if (side == 0)
+	if (game->ray->side == 0)
 		game->ray->dist = game->ray->sidedistx - game->ray->deltax;
 	else
 		game->ray->dist = game->ray->sidedisty - game->ray->deltay;
-	set_wall_color(game, side);
+	set_wall_color(game);
 }
 
 void	set_delta(t_game *game)

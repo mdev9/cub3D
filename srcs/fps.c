@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:04:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/29 17:47:41 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:54:55 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,4 @@ void	render_by_view(t_game *game)
 {
 	mlx_clear_window(game->mlx, game->mlx_win);
 	set_img(game);
-	if (game->minimap)
-		set_minimap(game);
 }

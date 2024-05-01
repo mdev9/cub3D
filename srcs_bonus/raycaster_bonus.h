@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycaster.h                                        :+:      :+:    :+:   */
+/*   raycaster_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:15:22 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/24 13:08:15 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:33:28 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTER_H
-# define RAYCASTER_H
+#ifndef RAYCASTER_BONUS_H
+# define RAYCASTER_BONUS_H
 
 # define FOV 90
 # define STEP 21
@@ -38,6 +38,7 @@ typedef struct s_raycaster
 	int		wall_end;
 	int		is_d_map;
 	int		color;
+	int		side;
 }	t_raycaster;
 
 #endif

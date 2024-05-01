@@ -17,7 +17,6 @@ SRCS_RAW =	main.c				\
 			change_pos.c		\
 			map_checks.c		\
 			map_spawn_check.c	\
-			minimap.c			\
 			init.c
 
 SRCS_BONUS_RAW =	main_bonus.c				\
@@ -38,6 +37,7 @@ SRCS_BONUS_RAW =	main_bonus.c				\
 					map_checks_bonus.c			\
 					map_spawn_check_bonus.c		\
 					minimap_bonus.c				\
+					door_bonus.c				\
 					init_bonus.c
 
 OBJS_DIR = objs/

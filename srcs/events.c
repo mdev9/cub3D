@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 18:00:06 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:56:32 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,6 @@ int	keydown_event(int keycode, void *game_data)
 		game->input[2] = 1;
 	else if (keycode == 4)
 		game->input[3] = 1;
-	else if (keycode == 16)
-	{
-		game->minimap = !game->minimap;
-		render_by_view(game);
-	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:31:23 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:03 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:33:29 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	keydown_event(int keycode, void *game_data)
 		game->minimap = !game->minimap;
 		render_by_view(game);
 	}
+	else if (keycode == 8)
+		toogle_doors(game);
 	return (0);
 }
 

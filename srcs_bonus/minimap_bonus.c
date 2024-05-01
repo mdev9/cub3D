@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:27:46 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:04 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:50:29 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ void	put_mini_player(t_game *game, int x, int y)
 	}
 }
 
+void	set_minimap_tile(t_game *game, char c, int j, int i)
+{
+	if (c == '0' || char_is_spawn_pos(c))
+		put_tile(game, j, i, 0x22FFFFFF);
+	else if (c == 'D')
+		put_tile(game, j, i, 0xffe88300);
+	else if (c == 'O')
+		put_tile(game, j, i, 0x66e88300);
+	else
+		put_tile(game, j, i, 0xFF00A300);
+}
+
 void	set_minimap(t_game *game)
 {
 	double	x;
@@ -67,13 +79,9 @@ void	set_minimap(t_game *game)
 		{
 			if (++x >= 0 && y >= 0 && game->map[(int)y]
 				&& x < (double)ft_strlen(game->map[(int)y]))
-			{
-				if (game->map[(int)y][(int)x] == '0'
-					|| char_is_spawn_pos(game->map[(int)y][(int)x]))
-					put_tile(game, j, i, 0x22FFFFFF);
-				else
-					put_tile(game, j, i, 0xFF00A300);
-			}
+				set_minimap_tile(game, game->map[(int)y][(int)x], j, i);
+			else
+				put_tile(game, j, i, 0xFF00A300);
 		}
 	}
 	put_mini_player(game, 4, 4);

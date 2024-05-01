@@ -6,12 +6,12 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:36 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:13:58 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../libft/libft.h"
 # include <stdio.h>
@@ -57,6 +57,7 @@ typedef struct s_texture
 	void	*so;
 	void	*we;
 	void	*ea;
+	void	*door;
 }	t_texture;
 
 typedef struct s_game
@@ -125,12 +126,13 @@ void	get_orientation(t_game **game, int orientation);
 void	get_player_spawn_pos(t_game **game);
 
 void	put_path_in_struct(t_game *game, char *line, char *identifier);
-void	change_player_pos_in_map(int keycode, t_game *game);
 void	change_player_pos(int keycode, t_game *game);
 void	change_angle(int keycode, t_game *game);
 void	resize_map(t_game *game, int new_size);
 void	put_fps(t_game *game, int need_free);
+
 void	set_minimap(t_game *game);
+void	toogle_doors(t_game *game);
 
 int		open_file(char *map_path);
 int		rgb(int r, int g, int b);

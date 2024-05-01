@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 17:45:04 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:55:06 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
-	int			minimap;
 	int			map_size;
 	int			floor_color;
 	int			ceilling_color;

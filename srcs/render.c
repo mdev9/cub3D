@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/29 17:58:51 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/01 13:56:12 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ void	put_pixel_on_wall(t_game *game, int i, int *j, void *texture)
 				* (*game->texture->height / (HEIGHT / game->ray->dist)));
 		game->ray->color = mlx_get_image_pixel(game->mlx, texture,
 				px * *game->texture->width, py);
-		if (!game->minimap || (game->minimap && (i > 288 || *j > 288)))
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, *j, game->ray->color);
+		mlx_pixel_put(game->mlx, game->mlx_win, i, *j, game->ray->color);
 	}
 }
 
@@ -63,18 +61,14 @@ void	display_img(t_game *game, int i, int *j)
 {
 	while (++*j < game->ray->wall_start)
 	{
-		if (!game->minimap || (game->minimap && (i > 288 || *j > 288)))
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, *j, game->ceilling_color);
+		mlx_pixel_put(game->mlx, game->mlx_win, i, *j, game->ceilling_color);
 	}
 	(*j)--;
 	display_wall(game, i, j);
 	(*j)--;
 	while (++*j < HEIGHT)
 	{
-		if (!game->minimap || (game->minimap && (i > 288 || *j > 288)))
-			mlx_pixel_put(game->mlx, \
-				game->mlx_win, i, *j, game->floor_color);
+		mlx_pixel_put(game->mlx, game->mlx_win, i, *j, game->floor_color);
 	}
 }
 

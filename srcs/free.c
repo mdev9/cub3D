@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/19 11:14:38 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:46:54 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void	exit_game(t_game *game, char *error_message)
 {
 	if (game)
 	{
-		if (game->mouse)
-			free(game->mouse);
 		if (game->ray)
 			free(game->ray);
 		free_textures(game);

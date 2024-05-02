@@ -12,7 +12,6 @@ SRCS_RAW =	main.c				\
 			map.c				\
 			free.c				\
 			raycaster.c			\
-			mouse.c				\
 			fps.c				\
 			change_pos.c		\
 			map_checks.c		\

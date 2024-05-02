@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:59:36 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 13:56:42 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:52:36 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	game_loop(void *s_game)
 	t_game	*game;
 
 	game = (t_game *) s_game;
-	if (game->player->vect->use_mouse && !game->ray->is_d_map)
-		change_by_mouse(game);
 	check_input_touch(game);
 	render_by_view(game);
 	return (0);
@@ -48,15 +46,11 @@ int	init_game(t_game *game)
 			HEIGHT, "cub3D");
 	mlx_mouse_hide();
 	init_ray(game);
-	init_mouse(game);
 	init_input(game);
-	if (!game->player->vect->use_mouse)
-		set_img(game);
+	set_img(game);
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_on_event(game->mlx, game->mlx_win, MLX_KEYDOWN, keydown_event, game);
 	mlx_on_event(game->mlx, game->mlx_win, MLX_KEYUP, keydown_eventup, game);
-	mlx_on_event(game->mlx, game->mlx_win, MLX_MOUSEDOWN,
-		mousedown_event, game);
 	mlx_on_event(game->mlx, game->mlx_win,
 		MLX_WINDOW_EVENT, window_event, game);
 	mlx_loop(game->mlx);

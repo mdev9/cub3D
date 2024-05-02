@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 13:55:06 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:46:03 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 typedef struct s_vect
 {
 	int	angle;
-	int	use_mouse;
 }	t_vect;
 
 typedef struct s_player
@@ -42,12 +41,6 @@ typedef struct s_player
 	double		x;
 	double		y;
 }	t_player;
-
-typedef struct s_mouse
-{
-	double		x;
-	double		y;
-}	t_mouse;
 
 typedef struct s_texture
 {
@@ -64,7 +57,6 @@ typedef struct s_game
 	t_player	*player;
 	t_texture	*texture;
 	t_raycaster	*ray;
-	t_mouse		*mouse;
 	void		*mlx;
 	void		*mlx_win;
 	char		**map;
@@ -73,10 +65,6 @@ typedef struct s_game
 	int			ceilling_color;
 	int			input[6];
 }	t_game;
-
-//MOUSE//
-void	change_by_mouse(t_game *game);
-void	init_mouse(t_game *game);
 
 //CHECK//
 void	check_map_validity(t_game *game, char *map_path);
@@ -96,7 +84,6 @@ void	check_info(t_game *game, char *line);
 void	check_texture_files(t_game *game);
 
 //EVENT//
-int		mousedown_event(int keycode, void *game_data);
 int		keydown_event(int keycode, void *game);
 int		window_event(int value, void *game);
 int		keydown_eventup(int keycode, void *game_data);

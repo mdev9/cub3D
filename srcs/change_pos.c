@@ -6,18 +6,22 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:03:07 by axdubois          #+#    #+#             */
-/*   Updated: 2024/04/24 12:51:47 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:25:36 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_wall_touch(t_game *game, double x, double y)
+int	is_wall_touch(t_game *game, double x, double y, double speed[2])
 {
-	return (!game->map[(int)(game->player->y + y)]
-		[(int)(game->player->x + x)]
-		|| game->map[(int)(game->player->y + y)]
-		[(int)(game->player->x + x)] == '1');
+	return (!game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)]
+		|| game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)] == '1'
+		|| game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)] == 'D'
+		|| game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)] == 'A');
 }
 
 void	is_wall_in_way(t_game *game, double speedx, double speedy)
@@ -37,10 +41,10 @@ void	is_wall_in_way(t_game *game, double speedx, double speedy)
 		while (fabs(y) < fabs(speedy))
 		{
 			y += speedy / 100;
-			if (is_wall_touch(game, x, y))
+			if (is_wall_touch(game, x, y, (double [2]){speedx, speedy}))
 				return ;
 		}
-		if (is_wall_touch(game, x, y))
+		if (is_wall_touch(game, x, y, (double [2]){speedx, speedy}))
 			return ;
 	}
 	game->player->x += x;
@@ -73,20 +77,4 @@ void	change_player_pos(int keycode, t_game *game)
 		spdy = SPEED * cos((game->player->vect->angle + 90) * PI / 180);
 	}
 	is_wall_in_way(game, spdx, spdy);
-}
-
-void	change_player_pos_in_map(int keycode, t_game *game)
-{
-	if (keycode == 7 && game->map[(int)game->player->y]
-		[(int)(game->player->x + SPEED / 5)] != '1')
-		game->player->x += SPEED / 5;
-	else if (keycode == 4 && game->map[(int)game->player->y]
-		[(int)(game->player->x - SPEED / 5)] != '1')
-		game->player->x -= SPEED / 5;
-	else if (keycode == 22 && game->map[(int)(game->player->y + SPEED / 5)]
-		[(int)game->player->x] != '1')
-		game->player->y += SPEED / 5;
-	else if (keycode == 26 && game->map[(int)(game->player->y - SPEED / 5)]
-		[(int)game->player->x] != '1')
-		game->player->y -= SPEED / 5;
 }

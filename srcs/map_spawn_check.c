@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:20:34 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 14:17:15 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:36:57 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	get_player_spawn_pos(t_game **game)
 		i++;
 	}
 	if (!(*game)->player->x || !(*game)->player->y)
-		exit_game(*game, "Error\nNo player spawning position!");
+		exit_game(*game, "Error\nNo player spawning position!\n");
 }

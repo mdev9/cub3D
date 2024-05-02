@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 14:35:23 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:34:43 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	main(int ac, char **av)
 {
 	t_game	*game;
 
+	check_input_validity(ac, av);
 	game = ft_calloc(1, sizeof(t_game));
 	if (!game)
 		exit(1);
-	check_input_validity(ac, av);
 	check_map_validity(game, av[1]);
 	init_game(game);
 }

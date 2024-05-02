@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 11:09:06 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:00:53 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_game
 	void			*mlx_win;
 	char			**map;
 	int				minimap;
-	int				loop_nb;
+	size_t			start_time;
 	int				current_animation_color;
 	int				map_size;
 	int				floor_color;
@@ -134,12 +134,13 @@ void	put_path_in_struct(t_game *game, char *line, char *identifier);
 void	change_player_pos(int keycode, t_game *game);
 void	change_angle(int keycode, t_game *game);
 void	resize_map(t_game *game, int new_size);
-void	put_fps(t_game *game, int need_free);
 
 void	set_minimap(t_game *game);
 void	toogle_doors(t_game *game);
 int		color_is_from_wall(int color);
 int		get_current_animation_color(t_game *game);
+void	*get_current_texture(t_game *game);
+size_t	get_current_time(void);
 
 int		open_file(char *map_path);
 int		rgb(int r, int g, int b);

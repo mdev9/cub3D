@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/02 13:31:54 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:56:41 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,10 @@ void	display_wall(t_game *game, int i, int *j)
 		put_pixel_on_wall (game, i, j, game->texture->ea);
 	else if (game->ray->color == 0x00000000)
 		put_pixel_on_wall(game, i, j, game->texture->door);
-	else if (game->ray->color == 0x00110000)
-		put_pixel_on_wall(game, i, j, game->texture->a1);
-	else if (game->ray->color == 0x00112200)
-		put_pixel_on_wall(game, i, j, game->texture->a2);
-	else if (game->ray->color == 0x00112233)
-		put_pixel_on_wall(game, i, j, game->texture->a3);
+	else if (game->ray->color == 0x00111111)
+	{
+		put_pixel_on_wall(game, i, j, get_current_texture(game));
+	}
 }
 
 void	display_img(t_game *game, int i, int *j)

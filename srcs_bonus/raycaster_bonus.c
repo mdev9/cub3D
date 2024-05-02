@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/02 13:00:11 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:55:53 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_wall_color(t_game *game, int side)
 	}
 	if (game->map[game->ray->mapy][game->ray->mapx] == 'A')
 	{
-		game->ray->color = get_current_animation_color(game);
+		game->ray->color = 0x00111111;
 		return ;
 	}
 	if (side)

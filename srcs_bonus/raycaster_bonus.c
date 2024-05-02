@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:14:08 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 16:32:54 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:00:11 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	set_wall_color(t_game *game, int side)
 	if (game->map[game->ray->mapy][game->ray->mapx] == 'D')
 	{
 		game->ray->color = 0x00000000;
+		return ;
+	}
+	if (game->map[game->ray->mapy][game->ray->mapx] == 'A')
+	{
+		game->ray->color = get_current_animation_color(game);
 		return ;
 	}
 	if (side)
@@ -52,7 +57,8 @@ void	raysendmapp(t_game *game)
 			game->ray->side = 1;
 		}
 		if (game->map[game->ray->mapy][game->ray->mapx] == '1'
-			|| game->map[game->ray->mapy][game->ray->mapx] == 'D')
+			|| game->map[game->ray->mapy][game->ray->mapx] == 'D'
+			|| game->map[game->ray->mapy][game->ray->mapx] == 'A')
 			break ;
 	}
 	if (game->ray->side == 0)

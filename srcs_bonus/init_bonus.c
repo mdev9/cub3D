@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:59:36 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:03 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:58:24 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	game_loop(void *s_game)
 	game = (t_game *) s_game;
 	if (game->player->vect->use_mouse && !game->ray->is_d_map)
 		change_by_mouse(game);
+	game->loop_nb++;
+	if (game->loop_nb > 400000000)
+		game->loop_nb = 0;
 	check_input_touch(game);
 	render_by_view(game);
 	return (0);
@@ -47,6 +50,7 @@ int	init_game(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, WIDTH,
 			HEIGHT, "cub3D");
 	game->minimap = 1;
+	game->current_animation_color = 0x00110000;
 	mlx_mouse_hide();
 	init_ray(game);
 	init_mouse(game);

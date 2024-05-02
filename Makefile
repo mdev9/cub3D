@@ -38,6 +38,7 @@ SRCS_BONUS_RAW =	main_bonus.c				\
 					map_spawn_check_bonus.c		\
 					minimap_bonus.c				\
 					door_bonus.c				\
+					animations_bonus.c			\
 					init_bonus.c
 
 OBJS_DIR = objs/

@@ -6,20 +6,22 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 19:03:07 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/01 15:13:38 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:46:27 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-int	is_wall_touch(t_game *game, double x, double y)
+int	is_wall_touch(t_game *game, double x, double y, double speed[2])
 {
-	return (!game->map[(int)(game->player->y + y)]
-		[(int)(game->player->x + x)]
-		|| game->map[(int)(game->player->y + y)]
-		[(int)(game->player->x + x)] == '1'
-		|| game->map[(int)(game->player->y + y)]
-		[(int)(game->player->x + x)] == 'D');
+	return (!game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)]
+		|| game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)] == '1'
+		|| game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)] == 'D'
+		|| game->map[(int)(game->player->y + y + speed[1] / 100)]
+		[(int)(game->player->x + x + speed[0] / 100)] == 'A');
 }
 
 void	is_wall_in_way(t_game *game, double speedx, double speedy)
@@ -39,10 +41,10 @@ void	is_wall_in_way(t_game *game, double speedx, double speedy)
 		while (fabs(y) < fabs(speedy))
 		{
 			y += speedy / 100;
-			if (is_wall_touch(game, x, y))
+			if (is_wall_touch(game, x, y, (double [2]){speedx, speedy}))
 				return ;
 		}
-		if (is_wall_touch(game, x, y))
+		if (is_wall_touch(game, x, y, (double [2]){speedx, speedy}))
 			return ;
 	}
 	game->player->x += x;

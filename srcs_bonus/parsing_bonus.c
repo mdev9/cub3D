@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 14:16:12 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:27:33 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void	check_info(t_game *game, char *line)
 	line_is_valid += check_texture_info(game, line, "WE");
 	line_is_valid += check_texture_info(game, line, "EA");
 	line_is_valid += check_texture_info(game, line, "DO");
+	line_is_valid += check_texture_info(game, line, "A1");
+	line_is_valid += check_texture_info(game, line, "A2");
+	line_is_valid += check_texture_info(game, line, "A3");
 	line_is_valid += check_color_info(game, line, 'F');
 	line_is_valid += check_color_info(game, line, 'C');
 	if (!line_is_valid)
@@ -88,6 +91,9 @@ void	check_texture_files(t_game *game)
 	check_texture_file(game, game->texture->so);
 	check_texture_file(game, game->texture->we);
 	check_texture_file(game, game->texture->door);
+	check_texture_file(game, game->texture->a1);
+	check_texture_file(game, game->texture->a2);
+	check_texture_file(game, game->texture->a3);
 }
 
 void	get_orientation(t_game **game, int orientation)

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 15:15:04 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:27:50 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	load_textures(t_game *game)
 	load_texture(game, &game->texture->we);
 	load_texture(game, &game->texture->ea);
 	load_texture(game, &game->texture->door);
+	load_texture(game, &game->texture->a1);
+	load_texture(game, &game->texture->a2);
+	load_texture(game, &game->texture->a3);
 }
 
 void	check_input_touch(t_game *game)

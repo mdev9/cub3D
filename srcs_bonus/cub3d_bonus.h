@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 15:13:58 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:09:06 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,27 @@ typedef struct s_texture
 	void	*we;
 	void	*ea;
 	void	*door;
+	void	*a1;
+	void	*a2;
+	void	*a3;
 }	t_texture;
 
 typedef struct s_game
 {
-	t_player	*player;
-	t_texture	*texture;
-	t_raycaster	*ray;
-	t_mouse		*mouse;
-	void		*mlx;
-	void		*mlx_win;
-	char		**map;
-	int			minimap;
-	int			map_size;
-	int			floor_color;
-	int			ceilling_color;
-	int			input[6];
+	t_player		*player;
+	t_texture		*texture;
+	t_raycaster		*ray;
+	t_mouse			*mouse;
+	void			*mlx;
+	void			*mlx_win;
+	char			**map;
+	int				minimap;
+	int				loop_nb;
+	int				current_animation_color;
+	int				map_size;
+	int				floor_color;
+	int				ceilling_color;
+	int				input[7];
 }	t_game;
 
 //MOUSE//
@@ -133,6 +138,8 @@ void	put_fps(t_game *game, int need_free);
 
 void	set_minimap(t_game *game);
 void	toogle_doors(t_game *game);
+int		color_is_from_wall(int color);
+int		get_current_animation_color(t_game *game);
 
 int		open_file(char *map_path);
 int		rgb(int r, int g, int b);

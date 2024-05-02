@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:45:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 14:20:42 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:30:37 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ void	put_path_in_struct(t_game *game, char *line, char *identifier)
 		game->texture->ea = get_path(game, line);
 	if (identifier[0] == 'D' && identifier[1] == 'O')
 		game->texture->door = get_path(game, line);
+	if (identifier[0] == 'A' && identifier[1] == '1')
+		game->texture->a1 = get_path(game, line);
+	if (identifier[0] == 'A' && identifier[1] == '2')
+		game->texture->a2 = get_path(game, line);
+	if (identifier[0] == 'A' && identifier[1] == '3')
+		game->texture->a3 = get_path(game, line);
 }

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:27:46 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 15:50:29 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:48:13 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	set_minimap_tile(t_game *game, char c, int j, int i)
 		put_tile(game, j, i, 0xffe88300);
 	else if (c == 'O')
 		put_tile(game, j, i, 0x66e88300);
+	else if (c == 'A')
+		put_tile(game, j, i, 0xFFfc00fc);
 	else
 		put_tile(game, j, i, 0xFF00A300);
 }

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:20:34 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 14:25:37 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:17:15 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_line_for_spawn(t_game **game, int *i)
 	int	j;
 
 	j = 0;
-	while ((*game)->map[*i][++j])
+	while ((*game)->map[*i][j] && (*game)->map[*i][j])
 	{
 		if (char_is_spawn_pos((*game)->map[*i][j]))
 		{

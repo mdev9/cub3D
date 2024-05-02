@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 14:22:54 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:31:17 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	free_textures(t_game *game)
 		free_texture(game, game->texture->we);
 		free_texture(game, game->texture->ea);
 		free_texture(game, game->texture->door);
+		free_texture(game, game->texture->a1);
+		free_texture(game, game->texture->a2);
+		free_texture(game, game->texture->a3);
 		if (game->texture->width)
 			free(game->texture->width);
 		if (game->texture->height)

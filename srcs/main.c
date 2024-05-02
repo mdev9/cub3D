@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 14:28:40 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:35:23 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ void	check_input_touch(t_game *game)
 		change_angle(79, game);
 	if (game->input[5])
 		change_angle(80, game);
+}
+
+void	render_by_view(t_game *game)
+{
+	mlx_clear_window(game->mlx, game->mlx_win);
+	set_img(game);
 }
 
 int	main(int ac, char **av)

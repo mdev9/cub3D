@@ -12,7 +12,6 @@ SRCS_RAW =	main.c				\
 			map.c				\
 			free.c				\
 			raycaster.c			\
-			fps.c				\
 			change_pos.c		\
 			map_checks.c		\
 			map_spawn_check.c	\
@@ -31,7 +30,6 @@ SRCS_BONUS_RAW =	main_bonus.c				\
 					free_bonus.c				\
 					raycaster_bonus.c			\
 					mouse_bonus.c				\
-					fps_bonus.c					\
 					change_pos_bonus.c			\
 					map_checks_bonus.c			\
 					map_spawn_check_bonus.c		\

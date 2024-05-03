@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 13:46:03 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:00:44 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,26 @@ typedef struct s_player
 	double		y;
 }	t_player;
 
+
 typedef struct s_texture
 {
 	int		*width;
 	int		*height;
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
+	void	*value;
 }	t_texture;
+
+typedef struct s_textures
+{
+	t_texture	*no;
+	t_texture	*so;
+	t_texture	*we;
+	t_texture	*ea;
+}	t_textures;
 
 typedef struct s_game
 {
 	t_player	*player;
-	t_texture	*texture;
+	t_textures	*textures;
 	t_raycaster	*ray;
 	void		*mlx;
 	void		*mlx_win;
@@ -101,6 +107,7 @@ void	set_img(t_game *game);
 
 int		load_map_data(t_game *game, int fd);
 int		init_game(t_game *game);
+void	init_textures(t_game *game);
 
 //EXIT && FREE//
 void	exit_game(t_game *game, char *error_message);

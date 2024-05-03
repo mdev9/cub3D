@@ -14,6 +14,7 @@ SRCS_RAW =	main.c				\
 			raycaster.c			\
 			change_pos.c		\
 			map_checks.c		\
+			texture.c			\
 			map_spawn_check.c	\
 			init.c
 

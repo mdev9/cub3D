@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 15:00:53 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:40:55 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,25 @@ typedef struct s_texture
 {
 	int		*width;
 	int		*height;
-	void	*no;
-	void	*so;
-	void	*we;
-	void	*ea;
-	void	*door;
-	void	*a1;
-	void	*a2;
-	void	*a3;
+	void	*value;
 }	t_texture;
+
+typedef struct s_textures
+{
+	t_texture	*no;
+	t_texture	*so;
+	t_texture	*we;
+	t_texture	*ea;
+	t_texture	*door;
+	t_texture	*a1;
+	t_texture	*a2;
+	t_texture	*a3;
+}	t_textures;
 
 typedef struct s_game
 {
 	t_player		*player;
-	t_texture		*texture;
+	t_textures		*textures;
 	t_raycaster		*ray;
 	t_mouse			*mouse;
 	void			*mlx;

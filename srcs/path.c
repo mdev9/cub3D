@@ -6,18 +6,23 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:45:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/03/25 19:46:07 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:13:52 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*get_path(t_game *game, char *line)
+void	get_path(t_game *game, char *line, void **texture)
 {
 	char	*path;
 	int		len;
 	int		i;
 
+	if (ft_strnstr(*texture, ".png", ft_strlen(*texture)))
+	{
+		free(texture);
+		exit_game(game, "Error\nDuplicate textures identifier!\n");
+	}
 	i = 0;
 	len = 0;
 	line += 2;
@@ -31,17 +36,17 @@ char	*get_path(t_game *game, char *line)
 	path = ft_substr(line, 0, len);
 	if (!path)
 		exit_game(game, 0);
-	return (path);
+	*texture = path;
 }
 
 void	put_path_in_struct(t_game *game, char *line, char *identifier)
 {
 	if (identifier[0] == 'N' && identifier[1] == 'O')
-		game->texture->no = get_path(game, line);
+		get_path(game, line, &game->textures->no->value);
 	if (identifier[0] == 'S' && identifier[1] == 'O')
-		game->texture->so = get_path(game, line);
+		get_path(game, line, &game->textures->so->value);
 	if (identifier[0] == 'W' && identifier[1] == 'E')
-		game->texture->we = get_path(game, line);
+		get_path(game, line, &game->textures->we->value);
 	if (identifier[0] == 'E' && identifier[1] == 'A')
-		game->texture->ea = get_path(game, line);
+		get_path(game, line, &game->textures->ea->value);
 }

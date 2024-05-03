@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 10:29:14 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:19:00 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_info(t_game *game, char *line)
 	if (!line_is_valid)
 	{
 		if (line_is_only_char(line, '1'))
-			exit_game(game, "Error\nMissing texture or color info in map!\n");
+			exit_game(game, "Error\nMissing textures or color info in map!\n");
 		ft_printf("Error\nInvalid line in map:\n%s", line);
 		exit_game(game, 0);
 	}
@@ -60,6 +60,9 @@ void	check_texture_file(t_game *game, char *texture)
 {
 	int	fd;
 
+	printf("%s\n", texture);
+	if (!ft_strnstr(texture, ".png", ft_strlen(texture)))
+		exit_game(game, "Error\nCan't open file\n");
 	fd = open(texture, O_RDONLY);
 	if (fd == -1)
 	{
@@ -82,10 +85,10 @@ void	check_texture_file(t_game *game, char *texture)
 
 void	check_texture_files(t_game *game)
 {
-	check_texture_file(game, game->texture->ea);
-	check_texture_file(game, game->texture->no);
-	check_texture_file(game, game->texture->so);
-	check_texture_file(game, game->texture->we);
+	check_texture_file(game, game->textures->ea->value);
+	check_texture_file(game, game->textures->no->value);
+	check_texture_file(game, game->textures->so->value);
+	check_texture_file(game, game->textures->we->value);
 }
 
 void	get_orientation(t_game **game, int orientation)

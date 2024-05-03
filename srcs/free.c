@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 13:46:54 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:47:16 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,30 @@ void	free_map(t_game *game, char **map)
 	free(map);
 }
 
-void	free_texture(t_game *game, void *texture)
+void	free_texture(t_game *game, t_texture *texture)
 {
+	if (texture->width)
+		free(texture->width);
+	if (texture->height)
+		free(texture->height);
 	if (texture)
 	{
-		if (ft_strnstr(texture, ".png", ft_strlen(texture)))
+		if (ft_strnstr(texture->value, ".png", ft_strlen(texture->value)))
 			free(texture);
 		else if (game->mlx)
-			mlx_destroy_image(game->mlx, texture);
+			mlx_destroy_image(game->mlx, texture->value);
 	}
 }
 
 void	free_textures(t_game *game)
 {
-	if (game->texture)
+	if (game->textures)
 	{
-		free_texture(game, game->texture->no);
-		free_texture(game, game->texture->so);
-		free_texture(game, game->texture->we);
-		free_texture(game, game->texture->ea);
-		if (game->texture->width)
-			free(game->texture->width);
-		if (game->texture->height)
-			free(game->texture->height);
-		free(game->texture);
+		free_texture(game, game->textures->no);
+		free_texture(game, game->textures->so);
+		free_texture(game, game->textures->we);
+		free_texture(game, game->textures->ea);
+		free(game->textures);
 	}
 }
 

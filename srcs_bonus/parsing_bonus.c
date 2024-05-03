@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
 /*   Updated: 2024/05/03 10:30:14 by axdubois         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:33:14 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +55,27 @@ void	check_info(t_game *game, char *line)
 	if (!line_is_valid)
 	{
 		if (line_is_only_char(line, '1'))
-			exit_game(game, "Error\nMissing texture or color info in map!\n");
+			exit_game(game, "Error\nMissing textures or color info in map!\n");
 		ft_printf("Error\nInvalid line in map:\n%s", line);
 		exit_game(game, 0);
 	}
 }
 
-void	check_texture_file(t_game *game, char *texture)
+void	check_texture_file(t_game *game, char *textures)
 {
 	int	fd;
 
-	fd = open(texture, O_RDONLY);
+	fd = open(textures, O_RDONLY);
 	if (fd == -1)
 	{
 		if (errno == ENOENT)
-			printf("Error\nFile '%s' does not exist.\n", texture);
+			printf("Error\nFile '%s' does not exist.\n", textures);
 		else if (errno == EACCES)
 			printf("Error\nNo permission to read file '%s'.\n",
-				texture);
+				textures);
 		else
 			printf("Error\nCan't open file '%s': %s\n",
-				texture, strerror(errno));
+				textures, strerror(errno));
 	}
 	else
 	{
@@ -86,14 +87,14 @@ void	check_texture_file(t_game *game, char *texture)
 
 void	check_texture_files(t_game *game)
 {
-	check_texture_file(game, game->texture->ea);
-	check_texture_file(game, game->texture->no);
-	check_texture_file(game, game->texture->so);
-	check_texture_file(game, game->texture->we);
-	check_texture_file(game, game->texture->door);
-	check_texture_file(game, game->texture->a1);
-	check_texture_file(game, game->texture->a2);
-	check_texture_file(game, game->texture->a3);
+	check_texture_file(game, game->textures->ea);
+	check_texture_file(game, game->textures->no);
+	check_texture_file(game, game->textures->so);
+	check_texture_file(game, game->textures->we);
+	check_texture_file(game, game->textures->door);
+	check_texture_file(game, game->textures->a1);
+	check_texture_file(game, game->textures->a2);
+	check_texture_file(game, game->textures->a3);
 }
 
 void	get_orientation(t_game **game, int orientation)

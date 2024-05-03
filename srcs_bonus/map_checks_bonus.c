@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:44:12 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 10:28:11 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:33:14 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	check_map_info(t_game *game)
 
 	i = 0;
 	j = 0;
-	game->texture = ft_calloc(1, sizeof(t_texture));
-	if (!game->texture)
+	game->textures = ft_calloc(1, sizeof(t_texture));
+	if (!game->textures)
 		exit_game(game, 0);
 	while (i < game->map_size && j < 10)
 	{

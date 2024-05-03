@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:21:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 15:03:34 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:33:14 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	*get_current_texture(t_game *game)
 
 	seed = (get_current_time() - game->start_time) % 900;
 	if (seed > 300 && seed < 600)
-		return (game->texture->a2);
+		return (game->textures->a2);
 	if (seed > 600 && seed <= 900)
-		return (game->texture->a3);
+		return (game->textures->a3);
 	else
-		return (game->texture->a1);
+		return (game->textures->a1);
 }

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:45:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 10:30:37 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:33:14 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ char	*get_path(t_game *game, char *line)
 void	put_path_in_struct(t_game *game, char *line, char *identifier)
 {
 	if (identifier[0] == 'N' && identifier[1] == 'O')
-		game->texture->no = get_path(game, line);
+		game->textures->no = get_path(game, line);
 	if (identifier[0] == 'S' && identifier[1] == 'O')
-		game->texture->so = get_path(game, line);
+		game->textures->so = get_path(game, line);
 	if (identifier[0] == 'W' && identifier[1] == 'E')
-		game->texture->we = get_path(game, line);
+		game->textures->we = get_path(game, line);
 	if (identifier[0] == 'E' && identifier[1] == 'A')
-		game->texture->ea = get_path(game, line);
+		game->textures->ea = get_path(game, line);
 	if (identifier[0] == 'D' && identifier[1] == 'O')
-		game->texture->door = get_path(game, line);
+		game->textures->door = get_path(game, line);
 	if (identifier[0] == 'A' && identifier[1] == '1')
-		game->texture->a1 = get_path(game, line);
+		game->textures->a1 = get_path(game, line);
 	if (identifier[0] == 'A' && identifier[1] == '2')
-		game->texture->a2 = get_path(game, line);
+		game->textures->a2 = get_path(game, line);
 	if (identifier[0] == 'A' && identifier[1] == '3')
-		game->texture->a3 = get_path(game, line);
+		game->textures->a3 = get_path(game, line);
 }

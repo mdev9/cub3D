@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 10:31:17 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:33:14 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,34 @@ void	free_map(t_game *game, char **map)
 	free(map);
 }
 
-void	free_texture(t_game *game, void *texture)
+void	free_texture(t_game *game, void *textures)
 {
-	if (texture)
+	if (textures)
 	{
-		if (ft_strnstr(texture, ".png", ft_strlen(texture)))
-			free(texture);
+		if (ft_strnstr(textures, ".png", ft_strlen(textures)))
+			free(textures);
 		else if (game->mlx)
-			mlx_destroy_image(game->mlx, texture);
+			mlx_destroy_image(game->mlx, textures);
 	}
 }
 
 void	free_textures(t_game *game)
 {
-	if (game->texture)
+	if (game->textures)
 	{
-		free_texture(game, game->texture->no);
-		free_texture(game, game->texture->so);
-		free_texture(game, game->texture->we);
-		free_texture(game, game->texture->ea);
-		free_texture(game, game->texture->door);
-		free_texture(game, game->texture->a1);
-		free_texture(game, game->texture->a2);
-		free_texture(game, game->texture->a3);
-		if (game->texture->width)
-			free(game->texture->width);
-		if (game->texture->height)
-			free(game->texture->height);
-		free(game->texture);
+		free_texture(game, game->textures->no);
+		free_texture(game, game->textures->so);
+		free_texture(game, game->textures->we);
+		free_texture(game, game->textures->ea);
+		free_texture(game, game->textures->door);
+		free_texture(game, game->textures->a1);
+		free_texture(game, game->textures->a2);
+		free_texture(game, game->textures->a3);
+		if (game->textures->width)
+			free(game->textures->width);
+		if (game->textures->height)
+			free(game->textures->height);
+		free(game->textures);
 	}
 }
 

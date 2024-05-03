@@ -6,42 +6,11 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:13 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 14:33:14 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:25:44 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-void	load_texture(t_game *game, void **textures)
-{
-	char	*texture_path;
-
-	texture_path = ft_strdup(*textures);
-	if (!texture_path)
-		exit_game(game, 0);
-	free(*textures);
-	*textures = mlx_png_file_to_image(game->mlx,
-			texture_path, game->textures->width, game->textures->height);
-	free(texture_path);
-	if (!*textures)
-		exit_game(game, "Error\nInvalid or missing textures!\n");
-}
-
-void	load_textures(t_game *game)
-{
-	game->textures->width = ft_calloc(1, sizeof(int));
-	game->textures->height = ft_calloc(1, sizeof(int));
-	if (!game->textures->width || !game->textures->height)
-		exit_game(game, 0);
-	load_texture(game, &game->textures->no);
-	load_texture(game, &game->textures->so);
-	load_texture(game, &game->textures->we);
-	load_texture(game, &game->textures->ea);
-	load_texture(game, &game->textures->door);
-	load_texture(game, &game->textures->a1);
-	load_texture(game, &game->textures->a2);
-	load_texture(game, &game->textures->a3);
-}
 
 void	check_input_touch(t_game *game)
 {

@@ -87,14 +87,14 @@ void	check_texture_file(t_game *game, char *textures)
 
 void	check_texture_files(t_game *game)
 {
-	check_texture_file(game, game->textures->ea);
-	check_texture_file(game, game->textures->no);
-	check_texture_file(game, game->textures->so);
-	check_texture_file(game, game->textures->we);
-	check_texture_file(game, game->textures->door);
-	check_texture_file(game, game->textures->a1);
-	check_texture_file(game, game->textures->a2);
-	check_texture_file(game, game->textures->a3);
+	check_texture_file(game, game->textures->ea->value);
+	check_texture_file(game, game->textures->no->value);
+	check_texture_file(game, game->textures->so->value);
+	check_texture_file(game, game->textures->we->value);
+	check_texture_file(game, game->textures->door->value);
+	check_texture_file(game, game->textures->a1->value);
+	check_texture_file(game, game->textures->a2->value);
+	check_texture_file(game, game->textures->a3->value);
 }
 
 void	get_orientation(t_game **game, int orientation)

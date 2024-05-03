@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 14:40:55 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:26:09 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	set_img(t_game *game);
 
 int		load_map_data(t_game *game, int fd);
 int		init_game(t_game *game);
+void	init_textures(t_game *game);
 
 //EXIT && FREE//
 void	exit_game(t_game *game, char *error_message);

@@ -33,6 +33,7 @@ SRCS_BONUS_RAW =	main_bonus.c				\
 					mouse_bonus.c				\
 					change_pos_bonus.c			\
 					map_checks_bonus.c			\
+					texture_bonus.c				\
 					map_spawn_check_bonus.c		\
 					minimap_bonus.c				\
 					door_bonus.c				\

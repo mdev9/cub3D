@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:04:09 by axdubois          #+#    #+#             */
-/*   Updated: 2024/05/03 14:33:06 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:31:28 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_wall(t_game *game)
 		game->ray->wall_end = HEIGHT - 1;
 }
 
-void	put_pixel_on_wall(t_game *game, int i, int *j, void *textures)
+void	put_pixel_on_wall(t_game *game, int i, int *j, t_texture *texture)
 {
 	double	px;
 	double	py;
@@ -40,9 +40,9 @@ void	put_pixel_on_wall(t_game *game, int i, int *j, void *textures)
 	while (++*j < game->ray->wall_end)
 	{
 		py = ((*j - (HEIGHT - game->ray->wall_size) / 2)
-				* (*game->textures->height / (HEIGHT / game->ray->dist)));
-		game->ray->color = mlx_get_image_pixel(game->mlx, textures,
-				px * *game->textures->width, py);
+				* (*texture->height / (HEIGHT / game->ray->dist)));
+		game->ray->color = mlx_get_image_pixel(game->mlx, texture->value,
+				px * *texture->width, py);
 		if (!game->minimap || (game->minimap && (i > 288 || *j > 288)))
 			mlx_pixel_put(game->mlx, \
 				game->mlx_win, i, *j, game->ray->color);

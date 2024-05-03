@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 15:19:00 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:36:01 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	check_texture_file(t_game *game, char *texture)
 {
 	int	fd;
 
-	printf("%s\n", texture);
 	if (!ft_strnstr(texture, ".png", ft_strlen(texture)))
 		exit_game(game, "Error\nCan't open file\n");
 	fd = open(texture, O_RDONLY);

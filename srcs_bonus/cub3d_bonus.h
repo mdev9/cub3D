@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 15:26:09 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:59:24 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int		get_current_animation_color(t_game *game);
 void	*get_current_texture(t_game *game);
 size_t	get_current_time(void);
 
-int		open_file(char *map_path);
+int		open_file(t_game *game, char *map_path);
 int		rgb(int r, int g, int b);
 
 #endif

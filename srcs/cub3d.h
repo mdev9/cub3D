@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 15:00:44 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:59:47 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_player
 	double		x;
 	double		y;
 }	t_player;
-
 
 typedef struct s_texture
 {
@@ -125,7 +124,7 @@ void	resize_map(t_game *game, int new_size);
 void	put_fps(t_game *game, int need_free);
 void	set_minimap(t_game *game);
 
-int		open_file(char *map_path);
+int		open_file(t_game *game, char *map_path);
 int		rgb(int r, int g, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:51:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:03 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:59:03 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,14 @@ void	check_file_extension(char *path)
 	}
 }
 
-int	open_file(char *map_path)
+int	open_file(t_game *game, char *map_path)
 {
 	int	fd;
 
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 	{
+		free(game);
 		perror("Error");
 		exit(1);
 	}

@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:44:12 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 15:27:10 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:02:47 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_map_validity(t_game *game, char *map_path)
 {
 	int	map_fd;
 
-	map_fd = open_file(map_path);
+	map_fd = open_file(game, map_path);
 	load_map_data(game, map_fd);
 	check_if_map_valid(game);
 }

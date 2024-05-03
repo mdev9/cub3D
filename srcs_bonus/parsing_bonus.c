@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/02 10:27:33 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/03 10:30:14 by axdubois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void	check_texture_files(t_game *game)
 void	get_orientation(t_game **game, int orientation)
 {
 	if (orientation == 'N')
-		(*game)->player->vect->angle = 270;
-	else if (orientation == 'S')
 		(*game)->player->vect->angle = 90;
+	else if (orientation == 'S')
+		(*game)->player->vect->angle = 270;
 	else if (orientation == 'W')
-		(*game)->player->vect->angle = 180;
-	else if (orientation == 'E')
 		(*game)->player->vect->angle = 0;
+	else if (orientation == 'E')
+		(*game)->player->vect->angle = 180;
 }

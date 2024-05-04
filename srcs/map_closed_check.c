@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/04/29 14:03:07 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:04:52 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,21 @@ void	flood_fill_map(t_game *game, char **map_copy, int check[4])
 	int		j;
 
 	i = 0;
-	j = 0;
 	while (i < game->map_size)
 	{
-		if (map_copy[i][j] == 0)
+		j = 0;
+		while (map_copy[i][j])
 		{
-			if (recursive_check(map_copy, check, check[2], check[3]))
+			if (map_copy[i][j] == '0')
 			{
-				free_map(game, map_copy);
-				exit_game(game, \
+				if (recursive_check(map_copy, check, check[2], check[3]))
+				{
+					free_map(game, map_copy);
+					exit_game(game, \
 "Error\nThe map contains an invalid character, isn't closed or is too big!\n");
+				}
+				check[1] = 0;
 			}
-			check[1] = 0;
 			j++;
 		}
 		i++;

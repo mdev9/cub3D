@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:44:12 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/04 15:04:15 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:20:36 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ int	check_map_info(t_game *game)
 	return (i);
 }
 
-void	check_map_line(t_game *game, int *i)
+void	check_map(t_game *game)
 {
+	int	i;
 	int	j;
 
-	j = 0;
-	while (is_whitespace(game->map[*i][j]))
-		j++;
-	while (j < (int)ft_strlen(game->map[*i]) - 1 &&
-		game->map[*i][j] && game->map[*i][j + 1] && game->map[*i][j + 1] != '\n')
+	i = 0;
+	while (i < game->map_size)
 	{
-		if (!char_is_valid(game->map[*i][j]))
-			if (game->map[*i][j] && *i != game->map_size - 1)
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (!char_is_valid(game->map[i][j]) && game->map[i][j] != ' ')
 				exit_game(game, "Error\nInvalid character found in map!\n");
-		j++;
+			j++;
+		}
+		i++;
 	}
-	if ((game->map[*i][j] && game->map[*i][j] != '1'))
-		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
 }
 
 void	check_if_map_valid(t_game *game)
@@ -59,8 +59,9 @@ void	check_if_map_valid(t_game *game)
 
 	i = check_map_info(game);
 	resize_map(game, i);
+	check_map(game);
 	get_player_spawn_pos(&game);
-	check_if_closed(game, game->player->x, game->player->y);
+	check_if_closed(game);
 }
 
 void	check_map_validity(t_game *game, char *map_path)

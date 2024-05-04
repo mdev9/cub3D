@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:26:55 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/04 15:04:52 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:29:05 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,24 @@ int	make_map_copy(t_game *game, char **map_copy)
 	return (0);
 }
 
-void	flood_fill_map(t_game *game, char **map_copy, int check[4])
+void	check_map_flooded(t_game *game, char **map_copy, int *i, int *j)
+{
+	if (char_is_valid(map_copy[*i][*j])
+		&& map_copy[*i][*j] != '1' && map_copy[*i][*j] != '\n')
+	{
+		if (recursive_check(map_copy,
+				(int [2]){game->map_size, 0}, *j, *i))
+		{
+			free_map(game, map_copy);
+			exit_game(game, \
+"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
+		}
+		*i = 0;
+		*j = 0;
+	}
+}
+
+void	flood_fill_map(t_game *game, char **map_copy)
 {
 	int		i;
 	int		j;
@@ -54,25 +71,18 @@ void	flood_fill_map(t_game *game, char **map_copy, int check[4])
 	while (i < game->map_size)
 	{
 		j = 0;
+		while (map_copy[i][j] == ' ')
+			j++;
 		while (map_copy[i][j])
 		{
-			if (map_copy[i][j] == '0')
-			{
-				if (recursive_check(map_copy, check, check[2], check[3]))
-				{
-					free_map(game, map_copy);
-					exit_game(game, \
-"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
-				}
-				check[1] = 0;
-			}
+			check_map_flooded(game, map_copy, &i, &j);
 			j++;
 		}
 		i++;
 	}
 }
 
-int	check_if_closed(t_game *game, int x, int y)
+int	check_if_closed(t_game *game)
 {
 	char	**map_copy;
 
@@ -84,7 +94,14 @@ int	check_if_closed(t_game *game, int x, int y)
 		free_map(game, map_copy);
 		exit_game(game, 0);
 	}
-	flood_fill_map(game, map_copy, (int [4]){game->map_size, 0, x, y});
+	if (recursive_check(map_copy,
+			(int [2]){game->map_size, 0}, game->player->x, game->player->y))
+	{
+		free_map(game, map_copy);
+		exit_game(game, \
+"Error\nThe map contains an invalid character, isn't closed or is too big!\n");
+	}
+	flood_fill_map(game, map_copy);
 	free_map(game, map_copy);
 	return (0);
 }

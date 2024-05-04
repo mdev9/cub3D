@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:44:12 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/04 15:04:24 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:23:42 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,34 @@ void	check_map_line(t_game *game, int *i)
 		exit_game(game, "Error\nThe map isn't surrounded by walls!\n");
 }
 
+void	check_map(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->map_size)
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (!char_is_valid(game->map[i][j]) && game->map[i][j] != ' ')
+				exit_game(game, "Error\nInvalid character found in map!\n");
+			j++;
+		}
+		i++;
+	}
+}
+
 void	check_if_map_valid(t_game *game)
 {
 	int	i;
 
 	i = check_map_info(game);
 	resize_map(game, i);
+	check_map(game);
 	get_player_spawn_pos(&game);
-	check_if_closed(game, game->player->x, game->player->y);
+	check_if_closed(game);
 }
 
 void	check_map_validity(t_game *game, char *map_path)

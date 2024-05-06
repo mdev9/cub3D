@@ -1,0 +1,7 @@
+1-- Leak check_texture_info avec "EA ./maps/textures/bricks.pn" en entree 
+seulement quand on change le .png
+2-- Leak check_texture info quand avec "NO ./maps/textures /oak_planks.png" en entree
+3-- 2 player == bon alors que ca ne devrait pas
+4-- espace apres color qui invalide la map alors que ca ne devrait pas
+5-- Leak sur cheak_playeer_spawn_pos quand 2 players 
+6-- "WEf ./maps/textures/stone_bricks.png" "WE   g		 ./maps/textures/stone_bricks.png" fonctionne

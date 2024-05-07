@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:45:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 17:33:13 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:11:59 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	get_path(t_game *game, char *line, void **texture)
 		exit_game(game, "Error\nDuplicate texture identifier!\n");
 	i = 0;
 	len = 0;
-	line += 2;
 	while (is_whitespace(line[i]))
 		line += 1;
 	while (!is_whitespace(line[i]))

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/07 10:16:59 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:45:01 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,31 @@ void	check_info(t_game *game, char *line)
 		ft_printf("Error\nInvalid line in map:\n%s", line);
 		exit_game(game, 0);
 	}
+}
+
+void	check_player(t_game *game)
+{
+	int	i;
+	int	j;
+	int	player_nb;
+
+	i = 0;
+	player_nb = 0;
+	while (i < game->map_size)
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (char_is_spawn_pos(game->map[i][j]))
+				player_nb++;
+			j++;
+		}
+		i++;
+	}
+	if (player_nb > 1)
+		exit_game(game, "Error\nToo many player spawning positions!\n");
+	else if (!player_nb)
+		exit_game(game, "Error\nNo player spawning position!\n");
 }
 
 void	check_if_png(t_game *game, t_texture **texture)

@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/07 10:13:55 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:28:26 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	check_input_touch(t_game *game);
 
 int		check_color_info(t_game *game, char *line, char identifier);
 int		check_if_closed(t_game *game);
+void	check_player(t_game *game);
 int		line_is_only_char(char *line, int c);
 int		line_is_empty(char *line);
 int		char_is_spawn_pos(int c);

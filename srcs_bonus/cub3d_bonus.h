@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/07 10:14:27 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:48:45 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	init_mouse(t_game *game);
 void	check_map_validity(t_game *game, char *map_path);
 void	check_input_validity(int ac, char **av);
 void	check_input_touch(t_game *game);
+void	check_player(t_game *game);
 
 int		check_color_info(t_game *game, char *line, char identifier);
 int		check_if_closed(t_game *game);

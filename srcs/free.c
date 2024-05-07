@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:41:57 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 17:13:37 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:54:29 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,21 @@ void	free_map(t_game *game, char **map)
 
 void	free_texture(t_game *game, t_texture *texture)
 {
-	if (texture->width)
-		free(texture->width);
-	if (texture->height)
-		free(texture->height);
-	if (texture->value)
+	if (texture)
 	{
-		if (ft_strnstr(texture->value, ".png", ft_strlen(texture->value)))
-			free(texture->value);
-		else if (game->mlx)
-			mlx_destroy_image(game->mlx, texture->value);
+		if (texture->width)
+			free(texture->width);
+		if (texture->height)
+			free(texture->height);
+		if (texture->value)
+		{
+			if (ft_strnstr(texture->value, ".png", ft_strlen(texture->value)))
+				free(texture->value);
+			else if (game->mlx)
+				mlx_destroy_image(game->mlx, texture->value);
+		}
+		free(texture);
 	}
-	free(texture);
 }
 
 void	free_textures(t_game *game)

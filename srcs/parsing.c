@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:11:52 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 17:36:01 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:16:59 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,38 +56,16 @@ void	check_info(t_game *game, char *line)
 	}
 }
 
-void	check_texture_file(t_game *game, char *texture)
+void	check_if_png(t_game *game, t_texture **texture)
 {
-	int	fd;
-
-	if (!ft_strnstr(texture, ".png", ft_strlen(texture)))
+	if (!ft_strnstr((*texture)->value, ".png", ft_strlen((*texture)->value)))
+	{
+		free((*texture)->value);
+		(*texture)->value = 0;
+		free(*texture);
+		*texture = 0;
 		exit_game(game, "Error\nCan't open file\n");
-	fd = open(texture, O_RDONLY);
-	if (fd == -1)
-	{
-		if (errno == ENOENT)
-			printf("Error\nFile '%s' does not exist.\n", texture);
-		else if (errno == EACCES)
-			printf("Error\nNo permission to read file '%s'.\n",
-				texture);
-		else
-			printf("Error\nCan't open file '%s': %s\n",
-				texture, strerror(errno));
 	}
-	else
-	{
-		close(fd);
-		return ;
-	}
-	exit_game(game, 0);
-}
-
-void	check_texture_files(t_game *game)
-{
-	check_texture_file(game, game->textures->ea->value);
-	check_texture_file(game, game->textures->no->value);
-	check_texture_file(game, game->textures->so->value);
-	check_texture_file(game, game->textures->we->value);
 }
 
 void	get_orientation(t_game **game, int orientation)

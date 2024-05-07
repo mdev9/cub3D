@@ -6,7 +6,7 @@
 /*   By: marde-vr <marde-vr@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:03:14 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/03 15:03:20 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:17:28 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,38 @@ void	load_textures(t_game *game)
 	load_texture(game, game->textures->so);
 	load_texture(game, game->textures->we);
 	load_texture(game, game->textures->ea);
+}
+
+void	check_texture_file(t_game *game, t_texture **texture)
+{
+	int	fd;
+
+	check_if_png(game, texture);
+	fd = open((*texture)->value, O_RDONLY);
+	if (fd == -1)
+	{
+		if (errno == ENOENT)
+			printf("Error\nFile '%s' does not exist.\n",
+				(char *)(*texture)->value);
+		else if (errno == EACCES)
+			printf("Error\nNo permission to read file '%s'.\n",
+				(char *)(*texture)->value);
+		else
+			printf("Error\nCan't open file '%s': %s\n",
+				(char *)(*texture)->value, strerror(errno));
+	}
+	else
+	{
+		close(fd);
+		return ;
+	}
+	exit_game(game, 0);
+}
+
+void	check_texture_files(t_game *game)
+{
+	check_texture_file(game, &game->textures->ea);
+	check_texture_file(game, &game->textures->no);
+	check_texture_file(game, &game->textures->so);
+	check_texture_file(game, &game->textures->we);
 }

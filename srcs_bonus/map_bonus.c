@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 19:41:56 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/01 11:57:04 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:35:36 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	load_map_data(t_game *game, int fd)
 			return (3);
 		game->map_size++;
 	}
+	close(fd);
 	return (0);
 }
 

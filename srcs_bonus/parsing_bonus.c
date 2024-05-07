@@ -61,40 +61,16 @@ void	check_info(t_game *game, char *line)
 	}
 }
 
-void	check_texture_file(t_game *game, char *textures)
+void	check_if_png(t_game *game, t_texture **texture)
 {
-	int	fd;
-
-	fd = open(textures, O_RDONLY);
-	if (fd == -1)
+	if (!ft_strnstr((*texture)->value, ".png", ft_strlen((*texture)->value)))
 	{
-		if (errno == ENOENT)
-			printf("Error\nFile '%s' does not exist.\n", textures);
-		else if (errno == EACCES)
-			printf("Error\nNo permission to read file '%s'.\n",
-				textures);
-		else
-			printf("Error\nCan't open file '%s': %s\n",
-				textures, strerror(errno));
+		free((*texture)->value);
+		(*texture)->value = 0;
+		free(*texture);
+		*texture = 0;
+		exit_game(game, "Error\nCan't open file\n");
 	}
-	else
-	{
-		close(fd);
-		return ;
-	}
-	exit_game(game, 0);
-}
-
-void	check_texture_files(t_game *game)
-{
-	check_texture_file(game, game->textures->ea->value);
-	check_texture_file(game, game->textures->no->value);
-	check_texture_file(game, game->textures->so->value);
-	check_texture_file(game, game->textures->we->value);
-	check_texture_file(game, game->textures->door->value);
-	check_texture_file(game, game->textures->a1->value);
-	check_texture_file(game, game->textures->a2->value);
-	check_texture_file(game, game->textures->a3->value);
 }
 
 void	get_orientation(t_game **game, int orientation)

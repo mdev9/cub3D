@@ -6,7 +6,7 @@
 /*   By: axdubois <axdubois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:21:39 by marde-vr          #+#    #+#             */
-/*   Updated: 2024/05/04 15:22:42 by marde-vr         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:13:55 by marde-vr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		char_is_valid(int c);
 int		is_whitespace(int c);
 
 int		check_texture_info(t_game *game, char *line, char *identifier);
+void	check_if_png(t_game *game, t_texture **texture);
 void	check_info(t_game *game, char *line);
 void	check_texture_files(t_game *game);
 
